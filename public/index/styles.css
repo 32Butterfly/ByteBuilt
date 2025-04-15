@@ -1,11 +1,4 @@
-.special-text {
-    font-weight: bold;
-    font-style: italic;
-    text-transform: uppercase;
-    font-size: 35px;
-  }
-
-  .landing-section {
+.landing-section {
     background-color: #f8f8f8; /* Light background for the section */
     padding: 20px;  /* Add some padding for spacing */
 }
