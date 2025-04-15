@@ -43,7 +43,7 @@
           <p id="emailHelp" class="help is-danger">This email is invalid</p>
       </div>
 
-        <script src="incorrectEmail.js"></script>
+        <script src="javascriptFiles/incorrectEmail.js"></script>
 
         <div class="field">
         <label class="label">Password</label>

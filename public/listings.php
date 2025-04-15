@@ -426,7 +426,7 @@
         <header class="modal-card-head">
         <p class="modal-card-title" id="previewTitle">Listing Preview</p>
         <button class="delete is-large" aria-label="close" id="closeModal"></button>
-        <script src="escapePreview.js"></script>
+        <script src="javascriptFiles/escapePreview.js"></script>
         </header>
         <section class="modal-card-body">
         <img id="previewImage" style="width: 100%; height: auto;" />
@@ -451,7 +451,7 @@
     </div>
     </div>
 
-    <script src="preview.js"></script>
+    <script src="javascriptFiles/preview.js"></script>
 
     <?php require('partials/footer.php')?>
 
