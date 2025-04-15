@@ -5,7 +5,7 @@ services:
     image: php:fpm
     container_name: php-container
     volumes:
-      - /home/evdm0167/website/public:/home/evdm0167/website/public  # Make sure to map the whole website directory
+      - /home/evdm0167/website/public:/var/www/html  # Make sure to map the whole website directory
     networks:
       - my_network
     ports:
@@ -17,8 +17,8 @@ services:
     depends_on:
       - php
     volumes:
-      - /home/evdm0167/website:/home/evdm0167/website  # Map the website directory
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro   # Map nginx.conf to container
+      - /home/evdm0167/website/public:/var/www/html   # Map the website directory
+      - /home/evdm0167/website/nginx.conf:/etc/nginx/nginx.conf:ro   # Map nginx.conf to container
     ports:
       - "80:80"
     networks:
