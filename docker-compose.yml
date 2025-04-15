@@ -5,9 +5,11 @@ services:
     image: php:fpm
     container_name: php-container
     volumes:
-      - ./webserver:/var/www/html
+      - /home/evdm0167/website/public:/home/evdm0167/website/public  # Make sure to map the whole website directory
     networks:
       - my_network
+    ports:
+      - "9000:9000"  # Explicitly bind port 9000 to the host machine
 
   nginx:
     image: nginx:latest
@@ -15,8 +17,8 @@ services:
     depends_on:
       - php
     volumes:
-      - ./webserver:/var/www/html
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - /home/evdm0167/website:/home/evdm0167/website  # Map the website directory
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro   # Map nginx.conf to container
     ports:
       - "80:80"
     networks:
