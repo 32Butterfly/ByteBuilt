@@ -1,16 +1,23 @@
-<!-- footer.php -->
-  <footer class="footer">
+<!-- resources/views/partials/footer.blade.php -->
+<footer class="footer">
   <div class="columns is-mobile is-vcentered">
-    <!-- Left Side -->
-    <div class="column has-text-right mx-5">
+    <!-- Left Side: Important Information -->
+    <div class="column mx-5">
+      <!-- Only this part will be centered -->
+      <div class="has-text-centered">
+        <p style = "margin-bottom: 20px"><strong>Important Information</strong></p>
+      </div>
       <p>
-        <strong>ByteBuilt</strong> - Your trusted marketplace for prebuilt PCs and laptops.
-        <br>We specialize in high-quality, ready-to-use systems for gamers, professionals, and casual users.
+        <strong>ByteBuilt</strong> <i class="fas fa-copyright"></i> 2025. Your trusted marketplace for prebuilt PCs and laptops.
+        We specialize in high-quality, ready-to-use systems for gamers, professionals, and casual users.
       </p>
+      <p>📞 Phone: (123) 456-7890</p>
+      <p>📧 Email: support@bytebuilt.com</p>
     </div>
 
-    <!-- Right Side -->
-    <div class="column has-text-left mx-5">
+    <!-- Right Side: Connect with Us and Social Media Icons -->
+    <div class="column has-text-centered mx-5">
+      <p style="margin-bottom: 20px;"><strong>Connect with Us</strong></p>
       <p class="mb-2">
         <a href="https://youtube.com" target="_blank" class="icon is-medium mx-1">
           <i class="fab fa-youtube fa-2x"></i>
@@ -27,9 +34,6 @@
         <a href="https://tiktok.com" target="_blank" class="icon is-medium mx-1">
           <i class="fab fa-tiktok fa-2x"></i>
         </a>
-      </p>
-      <p>
-        Source: <a href="https://opensource.org/license/mit" target="_blank">MIT</a> | Content: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY NC SA 4.0</a>
       </p>
     </div>
   </div>

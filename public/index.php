@@ -33,6 +33,50 @@
         </div>
       </section>
 
+    <!-- Services Section -->
+    <section class="section services-section">
+        <div class="container">
+          <h2 class="title is-2 has-text-centered has-text-primary">Our Services</h2>
+          <div class="columns is-vcentered">
+            <!-- E-Commerce Service -->
+            <div class="column has-text-centered">
+              <div class="box">
+                <figure class="image is-64x64 mx-auto">
+                  <i class="fas fa-shopping-cart fa-3x"></i> <!-- E-Commerce Icon -->
+                </figure>
+                <h3 class="title is-4">E-Commerce</h3>
+                <p>ByteBuilt is your go-to spot for top-quality prebuilt PCs and laptops. Whether you're gaming, working, or just browsing, we've got a wide range of systems to fit your needs
+                   At ByteBuilt, we make finding the perfect PC or laptop simple and fast.</p>
+              </div>
+            </div>
+
+            <!-- Responsive Design Service -->
+            <div class="column has-text-centered">
+              <div class="box">
+                <figure class="image is-64x64 mx-auto">
+                  <i class="fas fa-mobile-alt fa-3x"></i> <!-- Responsive Design Icon -->
+                </figure>
+                <h3 class="title is-4">Responsive Design</h3>
+                <p>At ByteBuilt, we make sure our website works perfectly no matter what device you're using. Whether you're on your phone, tablet, or laptop, everything looks great
+                   and functions smoothly. We’re all about making your shopping experience easy and enjoyable! <br></p>
+              </div>
+            </div>
+
+            <!-- Web Security Service -->
+            <div class="column has-text-centered">
+              <div class="box">
+                <figure class="image is-64x64 mx-auto">
+                  <i class="fas fa-shield-alt fa-3x"></i> <!-- Web Security Icon -->
+                </figure>
+                <h3 class="title is-4">Web Security</h3>
+                <p>Your privacy and security are a top priority for us. We use the latest security measures to protect your data, so you can shop with peace of mind.
+                   At ByteBuilt, we’ve got your back, ensuring a safe experience every time you visit our site.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
     <?php require('partials/footer.php'); ?>
 
   </body>
