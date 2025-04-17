@@ -1,6 +1,13 @@
 .landing-section {
-    background-color: #f8f8f8; /* Light background for the section */
     padding: 20px;  /* Add some padding for spacing */
+}
+
+.services-section {
+    margin-top: 60px;
+}
+
+body {
+    background-color: #f8f8f8; /* Set light background color */
 }
 
 /* Ensure the columns take full height and align properly */
