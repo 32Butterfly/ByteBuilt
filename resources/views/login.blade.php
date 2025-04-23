@@ -18,12 +18,14 @@
     <div class="login-container">
       <div class="login-box">
         <h2 class="title has-text-centered has-text-primary">Login to ByteBuilt</h2>
+        <!-- 🌟 Start of form -->
+        <form action="{{ route('login.post') }}" method="POST">
+          @csrf
 
-        <div class="field">
-          <label class="label"></label>
-          <label class="label">Email</label>
+          <div class="field">
+            <label class="label">Email</label>
             <div class="control has-icons-left has-icons-right">
-              <input id="emailInput" class="input" type="email" placeholder="E-mail">
+              <input id="emailInput" name="email" class="input" type="email" placeholder="E-mail" required>
               <span class="icon is-small is-left">
                 <i class="fas fa-envelope"></i>
               </span>
@@ -31,42 +33,44 @@
                 <i class="fas fa-exclamation-triangle"></i>
               </span>
             </div>
-          <p id="emailHelp" class="help is-danger">This email is invalid</p>
-      </div>
-
-      <script src="{{ asset('js/incorrectEmail.js') }}"></script>>
-
-        <div class="field">
-        <label class="label">Password</label>
-          <p class="control has-icons-left">
-            <input class="input" type="password" placeholder="Password">
-            <span class="icon is-small is-left">
-              <i class="fas fa-lock"></i>
-            </span>
-          </p>
-        </div>
-
-        <div class="field remember-me-box">
-          <div class="control">
-            <label class="checkbox">
-              <input type="checkbox">
-              Remember me
-            </label>
+            <p id="emailHelp" class="help is-danger">This email is invalid</p>
           </div>
-        </div>
 
-        <div class="field">
-          <p class="control">
-            <button class="button is-success is-fullwidth">
-              Login
-            </button>
-          </p>
-        </div>
+          <script src="{{ asset('js/incorrectEmail.js') }}"></script>
+
+          <div class="field">
+            <label class="label">Password</label>
+            <p class="control has-icons-left">
+              <input name="password" class="input" type="password" placeholder="Password" required>
+              <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+              </span>
+            </p>
+          </div>
+
+          <div class="field remember-me-box">
+            <div class="control">
+              <label class="checkbox">
+                <input type="checkbox" name="remember">
+                Remember me
+              </label>
+            </div>
+          </div>
+
+          <div class="field">
+            <p class="control">
+              <button type="submit" class="button is-success is-fullwidth">
+                Login
+              </button>
+            </p>
+          </div>
+        </form>
+        <!-- 🌟 End of form -->
 
         <div class="field register-suggestion">
           <div class="has-text-centered">
             <label class="is-size-6 has-text-centered has-text-weight-light">
-               Don't have an account? <a href="register.php">Register here</a>
+               Don't have an account? <a href="{{ route('register') }}">Register here</a>
             </label>
           </div>
         </div>

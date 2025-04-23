@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Product;
+use App\Http\Controllers\AuthManager;
 
 Route::get('/', function () {
     return view('home');
@@ -12,10 +13,9 @@ Route::get('/products', function () {
     return view('products', compact('products'));
 })->name('products');
 
-Route::get('/login', function () {
-    return view('login');
-})->name('login');
+Route::get('/login', [AuthManager::class, 'login'])->name('login');
+Route::post('/login', [AuthManager::class, 'loginPost'])->name('login.post');
 
-Route::get('/register', function () {
-    return view('register');
-})->name('register');
+Route::get('/register', [AuthManager::class, 'register'])->name('register');
+Route::post('/register', [AuthManager::class, 'registerPost'])->name('register.post');
+Route::get('/logout', [AuthManager::class, 'logout'])->name('logout');
