@@ -3,15 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\Product;
 use App\Http\Controllers\AuthManager;
+use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/products', function () {
-    $products = Product::all();
-    return view('products', compact('products'));
-})->name('products');
+Route::get('/products', [ProductController::class, 'index'])->name('products');
 
 Route::get('/login', [AuthManager::class, 'login'])->name('login');
 Route::post('/login', [AuthManager::class, 'loginPost'])->name('login.post');

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/products.css') }}">
     <link rel="stylesheet" href="{{ asset('css/navbarText.css') }}">
-
   </head>
   <body>
 
@@ -19,10 +18,10 @@
         <!-- 🔍 Search Bar -->
         <div class="field has-addons search-bar">
           <div class="control is-expanded">
-            <input class="input" type="text" placeholder="Search for PCs or laptops..." />
+            <input class="input" type="text" placeholder="Search for PCs or laptops..." id="searchInput"/>
           </div>
           <div class="control">
-            <button class="button is-primary">
+            <button class="button is-primary" id="searchBtn">
               <span class="icon"><i class="fas fa-search"></i></span>
             </button>
           </div>
@@ -30,393 +29,95 @@
 
         <!-- 🖼️ Card Grid -->
         <div class="columns is-multiline">
+          @foreach ($products as $product)
           <!-- 🧊 Listing Card -->
           <div class="column is-one-quarter">
             <div class="card">
               <div class="card-image">
                 <figure class="image is-4by3">
-                  <img src="listing1.jpg" alt="PC" />
+                  <img src="{{ asset($product->image) }}"/>
                 </figure>
               </div>
               <div class="card-content">
                 <div class="content">
-                  PC | Ryzen 7 7700, 32GB, 2TB SSD, RTX 4070
+                  {{ $product->name }}
                 </div>
               </div>
-              <div class="is-flex is-justify-content-flex-end">
-              <button class="button is-link is-small preview-btn"
-                data-image="listing1.jpg"
-                data-title="PC | Ryzen 7 7700, 32GB, 2TB SSD, RTX 4070"
-                data-specs='{
-                    "Manufacturer": "GameRoom",
-                    "Processor (CPU)": "AMD Ryzen 7 7700",
-                    "CPU Cooler": "DEEPCOOL AG500 BK ARGB",
-                    "Motherboard": "GIGABYTE B650 AX (WiFi 6E + Bluetooth 5.3)",
-                    "RAM": "32GB DDR5 6000MHz RGB",
-                    "GPU": "NVIDIA GeForce RTX 4070 12GB",
-                    "Storage": "2TB M.2 NVME PCIe Gen3x4",
-                    "Case": "APNX C1 Mid-Tower - ChromaFlair",
-                    "PSU": "Fully Modular 750W 80+ GOLD (ATX 3.0)",
-                    "Warranty": "24 months for individuals, 12 months for companies"
-                }'>
-                <span class="icon is-small"><i class="fas fa-eye"></i></span>
-                <span>Preview</span>
-             </button>
-             </div>
+              <div class="is-flex is-justify-content-space-between">
+              <p class="price" style = "margin-left: 20px">{{ $product->price }}{{ $product->currency }} </p>
+                <button class="button is-link is-small preview-btn"
+                  data-image="{{ asset($product->image) }}"
+                  data-title="{{ $product->name }}"
+                  data-specs="{{ json_encode($product->specs) }}">
+                  <span class="icon is-small"><i class="fas fa-eye"></i></span>
+                  <span>Preview</span>
+                </button>
+              </div>
             </div>
           </div>
+          @endforeach
+        </div>
 
-          <div class="column is-one-quarter">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img src="listing1.jpg" alt="PC" />
-                </figure>
+        <!-- 🔍 Preview Modal -->
+        <div class="modal" id="previewModal">
+          <div class="modal-background"></div>
+          <div class="modal-card">
+            <header class="modal-card-head">
+              <p class="modal-card-title" id="previewTitle">Listing Preview</p>
+              <button class="delete is-large" aria-label="close" id="closeModal"></button>
+            </header>
+            <section class="modal-card-body">
+              <img id="previewImage" style="width: 100%; height: auto;" />
+              <table class="table is-fullwidth is-striped mt-4" id="previewSpecs">
+                <tbody>
+                </tbody>
+              </table>
+            </section>
+            <footer class="modal-card-foot is-justify-content-flex-end">
+              <div class="is-flex is-align-items-center mr-auto price has-text-primary">
+                <p class="mr-4">{{ $product->price }} {{ $product->currency }}</p>
               </div>
-              <div class="card-content">
-                <div class="content">
-                  PC | Ryzen 7 7700, 32GB, 2TB SSD, RTX 4070
-                </div>
-              </div>
-              <div class="is-flex is-justify-content-flex-end">
-              <button class="button is-link is-small preview-btn"
-                data-image="listing1.jpg"
-                data-title="PC | Ryzen 7 7700, 32GB, 2TB SSD, RTX 4070"
-                data-specs='{
-                    "Manufacturer": "GameRoom",
-                    "Processor (CPU)": "AMD Ryzen 7 7700",
-                    "CPU Cooler": "DEEPCOOL AG500 BK ARGB",
-                    "Motherboard": "GIGABYTE B650 AX (WiFi 6E + Bluetooth 5.3)",
-                    "RAM": "32GB DDR5 6000MHz RGB",
-                    "GPU": "NVIDIA GeForce RTX 4070 12GB",
-                    "Storage": "2TB M.2 NVME PCIe Gen3x4",
-                    "Case": "APNX C1 Mid-Tower - ChromaFlair",
-                    "PSU": "Fully Modular 750W 80+ GOLD (ATX 3.0)",
-                    "Warranty": "24 months for individuals, 12 months for companies"
-                }'>
-                <span class="icon is-small"><i class="fas fa-eye"></i></span>
-                <span>Preview</span>
-             </button>
-             </div>
-            </div>
-          </div>
-
-          <div class="column is-one-quarter">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img src="listing1.jpg" alt="PC" />
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="content">
-                  PC | Ryzen 7 7700, 32GB, 2TB SSD, RTX 4070
-                </div>
-              </div>
-              <div class="is-flex is-justify-content-flex-end">
-              <button class="button is-link is-small preview-btn"
-                data-image="listing1.jpg"
-                data-title="PC | Ryzen 7 7700, 32GB, 2TB SSD, RTX 4070"
-                data-specs='{
-                    "Manufacturer": "GameRoom",
-                    "Processor (CPU)": "AMD Ryzen 7 7700",
-                    "CPU Cooler": "DEEPCOOL AG500 BK ARGB",
-                    "Motherboard": "GIGABYTE B650 AX (WiFi 6E + Bluetooth 5.3)",
-                    "RAM": "32GB DDR5 6000MHz RGB",
-                    "GPU": "NVIDIA GeForce RTX 4070 12GB",
-                    "Storage": "2TB M.2 NVME PCIe Gen3x4",
-                    "Case": "APNX C1 Mid-Tower - ChromaFlair",
-                    "PSU": "Fully Modular 750W 80+ GOLD (ATX 3.0)",
-                    "Warranty": "24 months for individuals, 12 months for companies"
-                }'>
-                <span class="icon is-small"><i class="fas fa-eye"></i></span>
-                <span>Preview</span>
-             </button>
-             </div>
-            </div>
-          </div>
-
-          <div class="column is-one-quarter">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img src="listing1.jpg" alt="PC" />
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="content">
-                  PC | Ryzen 7 7700, 32GB, 2TB SSD, RTX 4070
-                </div>
-              </div>
-              <div class="is-flex is-justify-content-flex-end">
-              <button class="button is-link is-small preview-btn"
-                data-image="listing1.jpg"
-                data-title="PC | Ryzen 7 7700, 32GB, 2TB SSD, RTX 4070"
-                data-specs='{
-                    "Manufacturer": "GameRoom",
-                    "Processor (CPU)": "AMD Ryzen 7 7700",
-                    "CPU Cooler": "DEEPCOOL AG500 BK ARGB",
-                    "Motherboard": "GIGABYTE B650 AX (WiFi 6E + Bluetooth 5.3)",
-                    "RAM": "32GB DDR5 6000MHz RGB",
-                    "GPU": "NVIDIA GeForce RTX 4070 12GB",
-                    "Storage": "2TB M.2 NVME PCIe Gen3x4",
-                    "Case": "APNX C1 Mid-Tower - ChromaFlair",
-                    "PSU": "Fully Modular 750W 80+ GOLD (ATX 3.0)",
-                    "Warranty": "24 months for individuals, 12 months for companies"
-                }'>
-                <span class="icon is-small"><i class="fas fa-eye"></i></span>
-                <span>Preview</span>
-             </button>
-             </div>
-            </div>
-          </div>
-
-          <div class="column is-one-quarter">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img src="listing1.jpg" alt="PC" />
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="content">
-                  PC | Ryzen 7 7700, 32GB, 2TB SSD, RTX 4070
-                </div>
-              </div>
-              <div class="is-flex is-justify-content-flex-end">
-              <button class="button is-link is-small preview-btn"
-                data-image="listing1.jpg"
-                data-title="PC | Ryzen 7 7700, 32GB, 2TB SSD, RTX 4070"
-                data-specs='{
-                    "Manufacturer": "GameRoom",
-                    "Processor (CPU)": "AMD Ryzen 7 7700",
-                    "CPU Cooler": "DEEPCOOL AG500 BK ARGB",
-                    "Motherboard": "GIGABYTE B650 AX (WiFi 6E + Bluetooth 5.3)",
-                    "RAM": "32GB DDR5 6000MHz RGB",
-                    "GPU": "NVIDIA GeForce RTX 4070 12GB",
-                    "Storage": "2TB M.2 NVME PCIe Gen3x4",
-                    "Case": "APNX C1 Mid-Tower - ChromaFlair",
-                    "PSU": "Fully Modular 750W 80+ GOLD (ATX 3.0)",
-                    "Warranty": "24 months for individuals, 12 months for companies"
-                }'>
-                <span class="icon is-small"><i class="fas fa-eye"></i></span>
-                <span>Preview</span>
-             </button>
-             </div>
-            </div>
-          </div>
-          
-          <div class="column is-one-quarter">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img src="listing1.jpg" alt="PC" />
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="content">
-                  PC | Ryzen 7 7700, 32GB, 2TB SSD, RTX 4070
-                </div>
-              </div>
-              <div class="is-flex is-justify-content-flex-end">
-              <button class="button is-link is-small preview-btn"
-                data-image="listing1.jpg"
-                data-title="PC | Ryzen 7 7700, 32GB, 2TB SSD, RTX 4070"
-                data-specs='{
-                    "Manufacturer": "GameRoom",
-                    "Processor (CPU)": "AMD Ryzen 7 7700",
-                    "CPU Cooler": "DEEPCOOL AG500 BK ARGB",
-                    "Motherboard": "GIGABYTE B650 AX (WiFi 6E + Bluetooth 5.3)",
-                    "RAM": "32GB DDR5 6000MHz RGB",
-                    "GPU": "NVIDIA GeForce RTX 4070 12GB",
-                    "Storage": "2TB M.2 NVME PCIe Gen3x4",
-                    "Case": "APNX C1 Mid-Tower - ChromaFlair",
-                    "PSU": "Fully Modular 750W 80+ GOLD (ATX 3.0)",
-                    "Warranty": "24 months for individuals, 12 months for companies"
-                }'>
-                <span class="icon is-small"><i class="fas fa-eye"></i></span>
-                <span>Preview</span>
-             </button>
-             </div>
-            </div>
-          </div>
-
-          <div class="column is-one-quarter">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img src="listing1.jpg" alt="PC" />
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="content">
-                  PC | Ryzen 7 7700, 32GB, 2TB SSD, RTX 4070
-                </div>
-              </div>
-              <div class="is-flex is-justify-content-flex-end">
-              <button class="button is-link is-small preview-btn"
-                data-image="listing1.jpg"
-                data-title="PC | Ryzen 7 7700, 32GB, 2TB SSD, RTX 4070"
-                data-specs='{
-                    "Manufacturer": "GameRoom",
-                    "Processor (CPU)": "AMD Ryzen 7 7700",
-                    "CPU Cooler": "DEEPCOOL AG500 BK ARGB",
-                    "Motherboard": "GIGABYTE B650 AX (WiFi 6E + Bluetooth 5.3)",
-                    "RAM": "32GB DDR5 6000MHz RGB",
-                    "GPU": "NVIDIA GeForce RTX 4070 12GB",
-                    "Storage": "2TB M.2 NVME PCIe Gen3x4",
-                    "Case": "APNX C1 Mid-Tower - ChromaFlair",
-                    "PSU": "Fully Modular 750W 80+ GOLD (ATX 3.0)",
-                    "Warranty": "24 months for individuals, 12 months for companies"
-                }'>
-                <span class="icon is-small"><i class="fas fa-eye"></i></span>
-                <span>Preview</span>
-             </button>
-             </div>
-            </div>
-          </div>
-
-          <div class="column is-one-quarter">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img src="listing1.jpg" alt="PC" />
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="content">
-                  PC | Ryzen 7 7700, 32GB, 2TB SSD, RTX 4070
-                </div>
-              </div>
-              <div class="is-flex is-justify-content-flex-end">
-              <button class="button is-link is-small preview-btn"
-                data-image="listing1.jpg"
-                data-title="PC | Ryzen 7 7700, 32GB, 2TB SSD, RTX 4070"
-                data-specs='{
-                    "Manufacturer": "GameRoom",
-                    "Processor (CPU)": "AMD Ryzen 7 7700",
-                    "CPU Cooler": "DEEPCOOL AG500 BK ARGB",
-                    "Motherboard": "GIGABYTE B650 AX (WiFi 6E + Bluetooth 5.3)",
-                    "RAM": "32GB DDR5 6000MHz RGB",
-                    "GPU": "NVIDIA GeForce RTX 4070 12GB",
-                    "Storage": "2TB M.2 NVME PCIe Gen3x4",
-                    "Case": "APNX C1 Mid-Tower - ChromaFlair",
-                    "PSU": "Fully Modular 750W 80+ GOLD (ATX 3.0)",
-                    "Warranty": "24 months for individuals, 12 months for companies"
-                }'>
-                <span class="icon is-small"><i class="fas fa-eye"></i></span>
-                <span>Preview</span>
-             </button>
-             </div>
-            </div>
-          </div>
-
-          <div class="column is-one-quarter">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img src="listing1.jpg" alt="PC" />
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="content">
-                  PC | Ryzen 7 7700, 32GB, 2TB SSD, RTX 4070
-                </div>
-              </div>
-              <div class="is-flex is-justify-content-flex-end">
-              <button class="button is-link is-small preview-btn"
-                data-image="listing1.jpg"
-                data-title="PC | Ryzen 7 7700, 32GB, 2TB SSD, RTX 4070"
-                data-specs='{
-                    "Manufacturer": "GameRoom",
-                    "Processor (CPU)": "AMD Ryzen 7 7700",
-                    "CPU Cooler": "DEEPCOOL AG500 BK ARGB",
-                    "Motherboard": "GIGABYTE B650 AX (WiFi 6E + Bluetooth 5.3)",
-                    "RAM": "32GB DDR5 6000MHz RGB",
-                    "GPU": "NVIDIA GeForce RTX 4070 12GB",
-                    "Storage": "2TB M.2 NVME PCIe Gen3x4",
-                    "Case": "APNX C1 Mid-Tower - ChromaFlair",
-                    "PSU": "Fully Modular 750W 80+ GOLD (ATX 3.0)",
-                    "Warranty": "24 months for individuals, 12 months for companies"
-                }'>
-                <span class="icon is-small"><i class="fas fa-eye"></i></span>
-                <span>Preview</span>
-             </button>
-             </div>
-            </div>
-          </div>
-
-          <div class="column is-one-quarter">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img src="listing1.jpg" alt="PC" />
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="content">
-                  PC | Ryzen 7 7700, 32GB, 2TB SSD, RTX 4070
-                </div>
-              </div>
-              <div class="is-flex is-justify-content-flex-end">
-              <button class="button is-link is-small preview-btn"
-                data-image="listing1.jpg"
-                data-title="PC | Ryzen 7 7700, 32GB, 2TB SSD, RTX 4070"
-                data-specs='{
-                    "Manufacturer": "GameRoom",
-                    "Processor (CPU)": "AMD Ryzen 7 7700",
-                    "CPU Cooler": "DEEPCOOL AG500 BK ARGB",
-                    "Motherboard": "GIGABYTE B650 AX (WiFi 6E + Bluetooth 5.3)",
-                    "RAM": "32GB DDR5 6000MHz RGB",
-                    "GPU": "NVIDIA GeForce RTX 4070 12GB",
-                    "Storage": "2TB M.2 NVME PCIe Gen3x4",
-                    "Case": "APNX C1 Mid-Tower - ChromaFlair",
-                    "PSU": "Fully Modular 750W 80+ GOLD (ATX 3.0)",
-                    "Warranty": "24 months for individuals, 12 months for companies"
-                }'>
-                <span class="icon is-small"><i class="fas fa-eye"></i></span>
-                <span>Preview</span>
-             </button>
-             </div>
-            </div>
+              <button class="button is-success mr-3">
+                <span class="icon"><i class="fas fa-shopping-cart"></i></span>
+                <span>Add to Cart</span>
+              </button>
+              <button class="button is-primary">
+                <span class="icon"><i class="fas fa-credit-card"></i></span>
+                <span>Buy Now</span>
+              </button>
+            </footer>
           </div>
         </div>
+
+        <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+          <a href="#" class="pagination-previous">Previous</a>
+          <a href="#" class="pagination-next">Next page</a>
+          <ul class="pagination-list">
+            <li><a href="#" class="pagination-link" aria-label="Goto page 1">1</a></li>
+            <li><span class="pagination-ellipsis">&hellip;</span></li>
+            <li><a href="#" class="pagination-link" aria-label="Goto page 45">45</a></li>
+            <li>
+              <a
+                class="pagination-link is-current"
+                aria-label="Page 46"
+                aria-current="page"
+                >46</a
+              >
+            </li>
+            <li><a href="#" class="pagination-link" aria-label="Goto page 47">47</a></li>
+            <li><span class="pagination-ellipsis">&hellip;</span></li>
+            <li><a href="#" class="pagination-link" aria-label="Goto page 86">86</a></li>
+          </ul>
+        </nav>
+
       </div>
     </section>
 
-        <!-- 🔍 Preview Modal -->
-    <div class="modal" id="previewModal">
-    <div class="modal-background"></div>
-    <div class="modal-card">
-        <header class="modal-card-head">
-        <p class="modal-card-title" id="previewTitle">Listing Preview</p>
-        <button class="delete is-large" aria-label="close" id="closeModal"></button>
-        <script src="{{ asset('js/escapePreview.js') }}"></script>
-        </header>
-        <section class="modal-card-body">
-        <img id="previewImage" style="width: 100%; height: auto;" />
-        <table class="table is-fullwidth is-striped mt-4" id="previewSpecs">
-            <tbody>
-            </tbody>
-        </table>
-        </section>
-        <footer class="modal-card-foot is-justify-content-flex-end">
-        <div class="is-flex is-align-items-center mr-auto price has-text-primary">
-            <p class="mr-4">Price: €1,599.00</p>
-        </div>
-      <button class="button is-success mr-3">
-        <span class="icon"><i class="fas fa-shopping-cart"></i></span>
-        <span>Add to Cart</span>
-      </button>
-      <button class="button is-primary">
-        <span class="icon"><i class="fas fa-credit-card"></i></span>
-        <span>Buy Now</span>
-      </button>
-    </footer>
-    </div>
-    </div>
-
+    <!-- Include the preview script -->
     <script src="{{ asset('js/preview.js') }}"></script>
+
+    <!-- Include the escapePreview script (for closing modal) -->
+    <script src="{{ asset('js/escapePreview.js') }}"></script>
 
     @include('partials.footer')
 
