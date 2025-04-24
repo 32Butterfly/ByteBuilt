@@ -418,7 +418,7 @@
 
     <script src="{{ asset('js/preview.js') }}"></script>
 
-    @inclde('partials.footer')
+    @include('partials.footer')
 
   </body>
 </html>

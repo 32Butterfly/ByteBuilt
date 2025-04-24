@@ -12,7 +12,12 @@
     <div class="navbar-start">
       <a href="{{ route('home') }}" class="navbar-item has-text-primary-65 special-text">ByteBuilt</a>
       <a href ="{{ route('products') }}" class="navbar-item">Products</a>
-      <a class="navbar-item">Admin panel</a>
+      {{-- show only for superusers --}}
+      @auth
+          @if(auth()->user()->isSuper())
+              <a href="{{ route('adminDashboard') }}" class="navbar-item">Admin panel</a>
+          @endif
+      @endauth
     </div>
 
     <div class="navbar-end">
