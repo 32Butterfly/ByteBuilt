@@ -1,0 +1,15 @@
+.main-text{
+    margin-top: 20px
+}
+
+.side-navigation{
+    background-color: #242730; /* Dark grey instead of black */
+}
+
+body {
+    background-color: #f8f8f8; /* Set light background color */
+}
+
+.columns.is-last {
+    margin-bottom: 0 !important;
+  }
