@@ -61,6 +61,8 @@
       </div>
     </div>
 
+    <script src="{{ asset('js/closeMessage.js') }}"></script>
+
     <!-- Centered Login Form -->
     <div class="login-container">
       <div class="login-box">
@@ -101,6 +103,7 @@
                 <input type="checkbox" name="remember">
                 Remember me
               </label>
+                <a class = "forgetPasswordText" href="{{ route('forgetPassword') }}">Forgot password?</a>
             </div>
           </div>
 

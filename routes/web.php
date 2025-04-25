@@ -24,3 +24,6 @@ Route::middleware([\App\Http\Middleware\CheckSuperuser::class])       // only lo
 
 Route::get('/forget-password', [ForgetPasswordManager::class, 'forgetPassword'])->name('forgetPassword');
 Route::post('/forget-password', [ForgetPasswordManager::class, 'forgetPasswordPost'])->name('forgetPassword.post');
+
+Route::get('/reset-password/{token}', [ForgetPasswordManager::class, 'resetPassword'])->name('resetPassword');
+Route::post('/reset-password', [ForgetPasswordManager::class, 'resetPasswordPost'])->name('resetPassword.post');
