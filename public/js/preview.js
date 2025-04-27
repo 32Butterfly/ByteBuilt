@@ -3,9 +3,12 @@ document.querySelectorAll(".preview-btn").forEach(button => {
     const title = button.dataset.title;
     const image = button.dataset.image;
     const specs = JSON.parse(button.dataset.specs);
+    const productPrice = button.dataset.price;
+    const productCurrency = button.dataset.currency;
 
     document.getElementById("previewTitle").textContent = title;
     document.getElementById("previewImage").src = image;
+    document.getElementById('previewPrice').innerText = productPrice + " " + productCurrency;
 
     const specsTable = document.getElementById("previewSpecs").querySelector("tbody");
     specsTable.innerHTML = ""; // Clear any previous rows
