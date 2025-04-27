@@ -28,14 +28,29 @@
             <img src="{{ asset('images/default_avatar.png') }}" alt="Default Avatar" class="is-rounded" style="width: 36px; height: 36px; object-fit: cover;">
           @endif
 
+          <div class="dropdown is-hoverable">
+            <div class="dropdown-trigger">
+                <i class="fas fa-bars"></i>
+                <span class="icon is-small">
+                  <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div class="dropdown-menu is-right" id="dropdown-menu3" role="menu">
+              <div class="dropdown-content">
+                <a href="#" class="dropdown-item"> Profile </a>
+                <a href="#" class="dropdown-item"> Orders </a>
+                <a href="{{ route('logout') }}" class="dropdown-item"> Log out </a>
+              </div>
+            </div>
+          </div>
+
           <!-- Display the user's name if logged in -->
           <span class="navbar-item has-text-weight-medium">Welcome, {{ auth()->user()->name }}</span>
-          <a href="{{ route('logout') }}" class="button is-light">Log out</a>
         @else
           <!-- Show the Sign Up and Log In buttons if not logged in -->
           <div class="buttons">
-            <a href="{{ route('register') }}" class="button is-primary"><strong>Sign up</strong></a>
             <a href="{{ route('login') }}" class="button is-light">Log in</a>
+            <a href="{{ route('register') }}" class="button is-primary"><strong>Sign up</strong></a>
           </div>
         @endauth
       </div>
