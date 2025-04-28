@@ -92,10 +92,8 @@
         </div>
 
         <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-          <a href="#" class="pagination-previous">Previous</a>
-          <a href="#" class="pagination-next">Next page</a>
           <ul class="pagination-list">
-            
+              {{ $products->links() }}
           </ul>
         </nav>
 
