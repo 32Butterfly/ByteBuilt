@@ -27,3 +27,9 @@ Route::post('/forget-password', [ForgetPasswordManager::class, 'forgetPasswordPo
 
 Route::get('/reset-password/{token}', [ForgetPasswordManager::class, 'resetPassword'])->name('resetPassword');
 Route::post('/reset-password', [ForgetPasswordManager::class, 'resetPasswordPost'])->name('resetPassword.post');
+
+Route::middleware("auth")->group(function(){
+    Route::get('/cart/{id}', [ProductController::class, 'addToCart'])->name('cartAdd');
+
+    Route::get('/cart', [ProductController::class, 'showCart'])->name('showCart');
+});
