@@ -79,14 +79,14 @@
               <div class="is-flex is-align-items-center mr-auto price has-text-primary">
                 <p class="mr-4" id="previewPrice"></p>
               </div>
-              <button class="button is-success mr-3">
-                <span class="icon"><i class="fas fa-shopping-cart"></i></span>
+              <a href="{{ route('cartAdd', $product->id) }}" class="button is-primary mr-2">
+                <span class="icon"><i class="fas fa-credit-card"></i></span>
                 <span>Add to Cart</span>
-              </button>
-              <button class="button is-primary">
+              </a>
+              <a href="{{ route('cartAdd', $product->id) }}" class="button is-primary">
                 <span class="icon"><i class="fas fa-credit-card"></i></span>
                 <span>Buy Now</span>
-              </button>
+              </a>
             </footer>
           </div>
         </div>

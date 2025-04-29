@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthManager;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ForgetPasswordManager;
+use App\Http\Controllers\OrderManager;
 
 Route::get('/', function () {
     return view('home');
@@ -32,4 +33,8 @@ Route::middleware("auth")->group(function(){
     Route::get('/cart/{id}', [ProductController::class, 'addToCart'])->name('cartAdd');
 
     Route::get('/cart', [ProductController::class, 'showCart'])->name('showCart');
+
+    Route::get('/checkout', [OrderManager::class, 'showCheckout'])->name('showCheckout');
+
+    Route::post('/checkout', [OrderManager::class, 'checkoutPost'])->name('checkoutPost');
 });

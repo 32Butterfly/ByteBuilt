@@ -41,6 +41,11 @@
         </div>
     </div>
 
+    <a href="{{ route('showCheckout') }}" class="button is-primary">
+        <span class="icon"><i class="fas fa-credit-card"></i></span>
+        <span>Buy Now</span>
+    </a>
+
     <nav class="pagination is-centered" role="navigation" aria-label="pagination">
         <ul class="pagination-list">
             {{ $cartItems->links() }}
