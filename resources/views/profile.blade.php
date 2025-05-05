@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/navbarText.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  </head>
+
+  <body>
+    @include('partials.navbar')
+
+    <div class="section pt-4 pb-0">
+      <div class="container is-flex is-justify-content-flex-end">
+        <div style="max-width: 400px;">
+          @if (session('success'))
+            <article class="message is-success" style="position: fixed; top: 20px; right: 20px; z-index: 9999;" id="successMessage">
+              <div class="message-header">
+                <p>Success</p>
+                <button class="delete" aria-label="delete"></button>
+              </div>
+              <div class="message-body">
+                {{ session('success') }}
+              </div>
+            </article>
+          @endif
+        </div>
+      </div>
+    </div>
+
+    <script src="{{ asset('js/closeMessage.js') }}"></script>
+
+    <!-- Profile Container -->
+    <div class="login-container">
+      <div class="login-box">
+        <h2 class="title has-text-centered has-text-primary">Your Profile</h2>
+
+        <div class="box">
+          <div class="field">
+            <label class="label">Name</label>
+            <div class="control">
+              <p>{{ Auth::user()->name }}</p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Email</label>
+            <div class="control">
+              <p>{{ Auth::user()->email }}</p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Account Created</label>
+            <div class="control">
+              <p>{{ Auth::user()->created_at->format('F j, Y') }}</p>
+            </div>
+          </div>
+
+          <div class="field mt-4">
+            <a href="{{ route('logout') }}" class="button is-danger is-fullwidth">
+              Logout
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    @include('partials.footer')
+  </body>
+</html>

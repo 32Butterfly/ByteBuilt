@@ -15,53 +15,44 @@
     @include('partials.navbar')
 
     <div class = "has-text-centered" style = "margin-top: 30px;">
-        <h1 class="title">Shopping Cart</h1>
+        <h1 class="title">Order History</h1>
     </div>
 
     <div class="columns is-centered">
         <div class="column is-one-third" style ="margin-top: 20px;">
             <div class="box">
-            @if ($cartItems->isEmpty())
+            @if ($orders->isEmpty())
             <div class="has-text-centered is-flex is-justify-content-center is-align-items-center" style="height: 40vh;">
                 <div class="is-flex is-flex-direction-column is-align-items-center">
-                    <p class="subtitle is-5 has-text-white">You have not added any items to the cart yet!</p>
+                    <p class="subtitle is-5 has-text-white">You have not bought anything as of yet!</p>
                     <a href="{{ route('products') }}" class="button is-big is-primary is-fullwidth mt-4">Go to Products</a>
                 </div>
             </div>
             @else
-            @foreach ($cartItems as $cart)
+            @foreach ($orders as $order)
             <article class="media">
                 <div class="media-left">
                 <figure class="image" style="width: 180px; height: 180px;">
-                    <img src="{{ $cart->image }}" alt="Image" />
+                    <img src="{{ $order->product_details[0]['image'] }}" alt="Image" />
                 </figure>
                 </div>
                 <div class="media-content">
-                    <p class="title is-6">{{ $cart->name }}</p>
+                @foreach ($order->product_details as $product)
+                <p class="subtitle is-6">Payment ID: {{ $product['name']}}</p>
                     <div class="is-flex is-justify-content-space-between">
-                        <p class="subtitle is-6">Price: {{ $cart->price }}{{ $cart->currency }}</p>
-                        <p class="subtitle is-6">Quantity: {{ $cart->quantity }}</p>
+                        <p class="subtitle is-6">Order #: {{ $order->id }}</p>
+                        <p class="subtitle is-6">Quantity: {{ $product['quantity']}}</p>
+                        <p class="subtitle is-6">Total: {{ $order->total_price }}{{ $product['currency']}} </p>
                     </div>
+                    <p class="subtitle is-6">Payment ID: {{ $order->payment_id }}</p>
                 </div>
+                @endforeach
             </article>
             @endforeach
             @endif
             </div>
         </div>
     </div>
-
-    @if(!$cartItems->isEmpty())
-    <a href="{{ route('showCheckout') }}" class="button is-primary">
-        <span class="icon"><i class="fas fa-credit-card"></i></span>
-        <span>Buy Now</span>
-    </a>
-    @endif
-
-    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-        <ul class="pagination-list">
-            {{ $cartItems->links() }}
-        </ul>
-    </nav>
 
     @include('partials.footer')
 

@@ -12,6 +12,7 @@
     <div class="navbar-start">
       <a href="{{ route('home') }}" class="navbar-item has-text-primary-65 special-text">ByteBuilt</a>
       <a href ="{{ route('products') }}" class="navbar-item">Products</a>
+      <a href ="{{ route('showCart') }}" class="navbar-item">Cart</a>
       {{-- show only for superusers --}}
       @auth
           @if(auth()->user()->isSuper())
@@ -37,8 +38,8 @@
             </div>
             <div class="dropdown-menu is-right" id="dropdown-menu3" role="menu">
               <div class="dropdown-content">
-                <a href="#" class="dropdown-item"> Profile </a>
-                <a href="#" class="dropdown-item"> Orders </a>
+                <a href="{{ route('profile') }}" class="dropdown-item"> Profile </a>
+                <a href="{{ route('orderHistory') }}" class="dropdown-item"> Orders </a>
                 <a href="{{ route('logout') }}" class="dropdown-item"> Log out </a>
               </div>
             </div>

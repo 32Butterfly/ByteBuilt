@@ -22,6 +22,10 @@ Route::get('/logout', [AuthManager::class, 'logout'])->name('logout');
 Route::middleware([\App\Http\Middleware\CheckSuperuser::class])       // only logged‑in superusers
      ->get('/admin',[\App\Http\Controllers\AdminDashboardController::class, 'index'])
      ->name('adminDashboard');
+     
+Route::middleware([\App\Http\Middleware\CheckSuperuser::class])       // only logged‑in superusers
+     ->get('/admin/products',[\App\Http\Controllers\AdminDashboardController::class, 'products'])
+     ->name('adminManageProducts');     
 
 Route::get('/forget-password', [ForgetPasswordManager::class, 'forgetPassword'])->name('forgetPassword');
 Route::post('/forget-password', [ForgetPasswordManager::class, 'forgetPasswordPost'])->name('forgetPassword.post');
@@ -37,4 +41,17 @@ Route::middleware("auth")->group(function(){
     Route::get('/checkout', [OrderManager::class, 'showCheckout'])->name('showCheckout');
 
     Route::post('/checkout', [OrderManager::class, 'checkoutPost'])->name('checkoutPost');
+
+    Route::get('/payment/success/{order_id}', [OrderManager::class, 'paymentSuccess'])->name('payment.success');
+
+    Route::get('/payment/error', [OrderManager::class, 'paymentError'])->name('payment.error');
+
+    Route::get('/orderHistory', [OrderManager::class, 'orderHistory'])->name('orderHistory');
+
+    Route::get('/profile', function () {
+        return view('profile');
+    })->name('profile');
+
 });
+
+Route::post('/admin/adminManageUsers', [\App\Http\Controllers\AdminDashboardController::class, 'adminManageUsers'])->name('adminManageUsers');
