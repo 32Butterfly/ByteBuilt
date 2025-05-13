@@ -37,6 +37,39 @@
       <div class="login-box">
         <h2 class="title has-text-centered has-text-primary">Your Profile</h2>
 
+        <form method="POST" action="{{ route('profile.post') }}" enctype="multipart/form-data">
+        @csrf
+
+        <div class="has-text-centered mb-4">
+          <figure class="image is-128x128 is-inline-block">
+            @if (Auth::user()->profile_picture)
+              <img class="is-rounded" style="width: 128px; height: 128px; object-fit: cover;"  src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="Profile Picture">
+            @else
+              <img class="is-rounded" style="width: 128px; height: 128px; object-fit: cover;"  src="{{ asset('images/default_avatar.png') }}" alt="Default Profile Picture">
+            @endif
+          </figure>
+        </div>
+
+        <div class="file has-name is-justify-content-center">
+          <label class="file-label">
+            <input class="file-input" type="file" name="image" id="imageInput" />
+            <span class="file-cta">
+              <span class="file-icon">
+                <i class="fas fa-upload"></i>
+              </span>
+              <span class="file-label">Choose a file…</span>
+            </span>
+            <span class="file-name" id="fileName">No file selected</span>
+          </label>
+        </div>
+
+        <script src="{{ asset('js/showImageName.js') }}"></script>
+
+        <div class="field has-text-centered mt-4">
+          <button type="submit" class="button is-link is-light">Upload</button>
+        </div>
+      </form>
+
         <div class="box">
           <div class="field">
             <label class="label">Name</label>

@@ -5,6 +5,8 @@ use App\Http\Controllers\AuthManager;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ForgetPasswordManager;
 use App\Http\Controllers\OrderManager;
+use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\UploadManager;
 
 Route::get('/', function () {
     return view('home');
@@ -19,13 +21,17 @@ Route::get('/register', [AuthManager::class, 'register'])->name('register');
 Route::post('/register', [AuthManager::class, 'registerPost'])->name('register.post');
 Route::get('/logout', [AuthManager::class, 'logout'])->name('logout');
 
-Route::middleware([\App\Http\Middleware\CheckSuperuser::class])       // only logged‑in superusers
-     ->get('/admin',[\App\Http\Controllers\AdminDashboardController::class, 'index'])
+Route::middleware([\App\Http\Middleware\CheckSuperuser::class])
+     ->get('/admin',[AdminDashboardController::class, 'index'])
      ->name('adminDashboard');
      
-Route::middleware([\App\Http\Middleware\CheckSuperuser::class])       // only logged‑in superusers
-     ->get('/admin/products',[\App\Http\Controllers\AdminDashboardController::class, 'products'])
-     ->name('adminManageProducts');     
+Route::middleware([\App\Http\Middleware\CheckSuperuser::class])
+     ->get('/admin/products',[AdminDashboardController::class, 'products'])
+     ->name('adminManageProducts');
+
+Route::middleware([\App\Http\Middleware\CheckSuperuser::class])
+     ->get('/admin/orders',[AdminDashboardController::class, 'orders'])
+     ->name('adminManageOrders');  
 
 Route::get('/forget-password', [ForgetPasswordManager::class, 'forgetPassword'])->name('forgetPassword');
 Route::post('/forget-password', [ForgetPasswordManager::class, 'forgetPasswordPost'])->name('forgetPassword.post');
@@ -52,6 +58,9 @@ Route::middleware("auth")->group(function(){
         return view('profile');
     })->name('profile');
 
+    Route::post('/profile', [UploadManager::class, 'uploadPost'])->name('profile.post');
 });
 
-Route::post('/admin/adminManageUsers', [\App\Http\Controllers\AdminDashboardController::class, 'adminManageUsers'])->name('adminManageUsers');
+Route::post('/admin/adminManageUsers', [AdminDashboardController::class, 'adminManageUsers'])->name('adminManageUsers');
+
+Route::post('/admin/adminProducts', [AdminDashboardController::class, 'adminManageProducts'])->name('adminProducts'); 
