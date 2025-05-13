@@ -46,6 +46,8 @@
               <div class="is-flex is-justify-content-space-between">
               <p class="price" style = "margin-left: 20px">{{ $product->price }}{{ $product->currency }} </p>
                 <button class="button is-link is-small preview-btn"
+                  data-route="{{ route('cartAdd', $product->id) }}"
+                  data-id="{{ $product->id }}"
                   data-image="{{ asset($product->image) }}"
                   data-title="{{ $product->name }}"
                   data-specs="{{ json_encode($product->specs) }}"
@@ -79,13 +81,9 @@
               <div class="is-flex is-align-items-center mr-auto price has-text-primary">
                 <p class="mr-4" id="previewPrice"></p>
               </div>
-              <a href="{{ route('cartAdd', $product->id) }}" class="button is-primary mr-2">
+              <a id="addToCartBtn" href="#" class="button is-primary mr-2">
                 <span class="icon"><i class="fas fa-credit-card"></i></span>
                 <span>Add to Cart</span>
-              </a>
-              <a href="{{ route('cartAdd', $product->id) }}" class="button is-primary">
-                <span class="icon"><i class="fas fa-credit-card"></i></span>
-                <span>Buy Now</span>
               </a>
             </footer>
           </div>

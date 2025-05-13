@@ -13,28 +13,7 @@
   <!-- Include the navbar -->
   @include('partials.navbar')
 
-    <div class="section pt-4 pb-0">
-      <div class="container is-flex is-justify-content-flex-end">
-        <div style="max-width: 400px;">
-
-          <!-- Session success message -->
-          @if (session('success'))
-            <article class="message is-success" style="position: fixed; top: 20px; right: 20px; z-index: 9999; max-width: 400px;" id="successMessage">
-              <div class="message-header">
-                <p>Success</p>
-                <button class="delete" aria-label="delete"></button>
-              </div>
-              <div class="message-body">
-                {{ session('success') }}
-              </div>
-            </article>
-          @endif
-
-        </div>
-      </div>
-    </div>
-
-    <script src="{{ asset('js/closeMessage.js') }}"></script>
+  @include('partials.message-notifications')
 
     <!-- Landing Section -->
     <section class="section landing-section">

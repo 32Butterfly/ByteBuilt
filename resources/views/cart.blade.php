@@ -13,6 +13,7 @@
 
     <!-- Include the navbar -->
     @include('partials.navbar')
+    @include('partials.message-notifications')
 
     <div class = "has-text-centered" style = "margin-top: 30px;">
         <h1 class="title">Shopping Cart</h1>
@@ -39,8 +40,20 @@
                 <div class="media-content">
                     <p class="title is-6">{{ $cart->name }}</p>
                     <div class="is-flex is-justify-content-space-between">
-                        <p class="subtitle is-6">Price: {{ $cart->price }}{{ $cart->currency }}</p>
-                        <p class="subtitle is-6">Quantity: {{ $cart->quantity }}</p>
+                        <p class="subtitle is-6">Price: {{ $cart->price }}{{ $cart->currency }}</p>                      
+                    </div>
+                    <div class="is-flex is-justify-content-space-between quantityMaker">
+                        <form action="{{ route('cart.removeOne') }}" method="POST" style="display:inline;">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $cart->product_id }}">
+                            <button class="button is-small is-danger is-rounded" title="Remove one" >
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </form>
+                        <p class="subtitle is-6" style="margin-bottom: 0;">Quantity: {{ $cart->quantity }}</p>
+                        <button class="button is-small is-success is-rounded" title="Add one">
+                                <i class="fas fa-plus"></i>
+                        </button>  
                     </div>
                 </div>
             </article>
