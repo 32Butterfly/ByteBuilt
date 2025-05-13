@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class UploadManager extends Controller
 {
@@ -16,9 +17,12 @@ class UploadManager extends Controller
         $image = $request->file('image');
         $randomName = Str::random(64) . '.' . $image->getClientOriginalExtension();
         $path = $image->storeAs('', $randomName, 'public');
-    
-        // Update the user's profile picture
+
         $user = Auth::user();
+        if ($user->profile_picture) {
+            // Delete the old image if it exists
+            Storage::disk('public')->delete($user->profile_picture);
+        }
         $user->profile_picture = $path;
         $user->save();
     
