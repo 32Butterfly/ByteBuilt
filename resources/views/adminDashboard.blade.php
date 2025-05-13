@@ -10,10 +10,14 @@
   </head>
 
 <body>
+
+
   <div class="columns is-gapless is-last">
      @include('partials.adminSideNavigation')
     <div class="column is-10 admin-panel">
      @include('partials.navbar')
+     @include('partials.message-notifications')
+
       <section class="hero is-small">
         <!-- Hero content: will be in the middle -->
         <div class="hero-body">
@@ -33,8 +37,8 @@
         <div class="is-flex is-align-items-center is-justify-content-space-between">
           <h1 class="subtitle has-text-weight-medium">Users</h1>
           <div class="is-flex">
-            <button type="submit" name="action" value="delete" class="button is-danger mr-2">Delete Selected</button>
-            <button type="submit" name="action" value="toggleRole" class="button is-info">Change Role</button>
+            <button type="submit" name="action" value="toggleRole" class="button is-info mr-2">Change Role</button>
+            <button type="submit" name="action" value="delete" class="button is-danger">Delete Selected</button>
           </div>
         </div>
 
@@ -69,7 +73,16 @@
       </div>
     </form>
   </section>
-</div>
+
+  <nav class="pagination is-centered has-text-weight-medium has-text-black" role="navigation" aria-label="pagination" style="margin-bottom: 45px;">
+    <ul class="pagination-list">
+        {{ $users->links() }}
+    </ul>
+  </nav>
+
+  <script src="{{ asset('js/checkboxUsers.js') }}"></script>
+
+  </div>
 </div>
  @include('partials.footer')
 </body>
