@@ -18,7 +18,6 @@
      @include('partials.message-notifications')
 
       <section class="hero is-small">
-        <!-- Hero content: will be in the middle -->
         <div class="hero-body">
           <div class="container">
             <h1 class="title has-text-black has-text-centered">
@@ -36,7 +35,10 @@
         <div class="is-flex is-align-items-center is-justify-content-space-between">
             <h1 class="subtitle has-text-weight-medium">Products</h1>
             <div class="is-flex">
-                <button type="submit" name="action" value="addProduct" class="button is-success mr-2">Add new product</button>
+            <button type="button" class="button is-success mr-2" id="openModalBtn">
+              <span class="icon"><i class="fas fa-box"></i></span>
+              <span>Add New Product</span>
+            </button>
                 <button type="submit" name="action" value="delete" class="button is-danger">Delete Selected</button>
             </div>
         </div>
@@ -45,6 +47,7 @@
             <thead>
                 <tr>
                     <th><input type="checkbox" id="select-all-products"></th>
+                    <th>ID</th>
                     <th>Name</th>
                     <th>Specs</th>
                     <th>Price</th>
@@ -55,6 +58,7 @@
                 @foreach ($products as $product)
                     <tr>
                         <td><input type="checkbox" name="product_ids[]" value="{{ $product->id }}"></td>
+                        <td class="product-name">{{ $product->id }}</td>
                         <td class="product-name">{{ $product->name }}</td>
                         <td>
                             <ul>
@@ -90,6 +94,68 @@
 </div>
 </div>
 
+<!-- Add New Product Modal -->
+<div class="modal" id="addProductModal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Add New Product</p>
+      <button class="delete is-large" aria-label="close" id="closeModalBtn"></button>
+    </header>
+    <section class="modal-card-body">
+      <!-- Form to add new product -->
+
+
+        <div class="field">
+          <label class="label">Product Name</label>
+          <div class="control">
+            <input class="input" type="text" name="name" placeholder="Product Name" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Specifications</label>
+          <div class="control">
+            <textarea class="textarea" name="specs" placeholder="Product Specifications" required></textarea>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Price</label>
+          <div class="control">
+            <input class="input" type="number" step="1" name="price" placeholder="Price" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Currency</label>
+          <div class="control">
+            <div class="select">
+              <select name="currency" required>
+                <option value="$">$</option>
+                <option value="€">€</option>
+                <option value="£">£</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Product Image</label>
+          <div class="control">
+            <input class="input" type="file" name="image">
+          </div>
+        </div>
+
+        <div class="control">
+          <button type="submit" class="button is-primary is-fullwidth">Add Product</button>
+        </div>
+      </form>
+    </section>
+  </div>
+</div>
+
+<script src = "{{ asset('js/adminProductModal.js') }}"></script>
 <script src="{{ asset('js/checkboxProducts.js') }}"></script>
 
  @include('partials.footer')

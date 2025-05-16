@@ -11,8 +11,8 @@
 
   <body>
 
-    <!-- Include the navbar -->
     @include('partials.navbar')
+    @include('partials.message-notifications')
 
     <div class = "has-text-centered" style = "margin-top: 30px;">
         <h1 class="title">Order History</h1>
@@ -30,29 +30,29 @@
             </div>
             @else
             @foreach ($orders as $order)
-            <article class="media">
-                <div class="media-left">
-                <figure class="image" style="width: 180px; height: 180px;">
-                    <img src="{{ $order->product_details[0]['image'] }}" alt="Image" />
-                </figure>
-                </div>
-                <div class="media-content">
                 @foreach ($order->product_details as $product)
-                <p class="subtitle is-6">Payment ID: {{ $product['name']}}</p>
-                    <div class="is-flex is-justify-content-space-between">
-                        <p class="subtitle is-6">Order #: {{ $order->id }}</p>
-                        <p class="subtitle is-6">Quantity: {{ $product['quantity']}}</p>
-                        <p class="subtitle is-6">Total: {{ $order->total_price }}{{ $product['currency']}} </p>
-                    </div>
-                    <p class="subtitle is-6">Payment ID: {{ $order->payment_id }}</p>
-                </div>
+                    <article class="media mb-5">
+                        <div class="media-left">
+                            <figure class="image" style="width: 180px; height: 180px;">
+                                <img src="{{ $product['image'] }}" alt="Image" />
+                            </figure>
+                        </div>
+                        <div class="media-content">
+                            <p class="subtitle is-6">Product: {{ $product['name'] }}</p>
+                            <div class="is-flex is-justify-content-space-between">
+                                <p class="subtitle is-6">Order #: {{ $order->id }}</p>
+                                <p class="subtitle is-6">Quantity: {{ $product['quantity'] }}</p>
+                                <p class="subtitle is-6">Total: {{ $order->total_price }}{{ $product['currency'] }}</p>
+                            </div>
+                            <p class="subtitle is-6">Payment ID: {{ $order->payment_id }}</p>
+                        </div>
+                    </article>
                 @endforeach
-            </article>
             @endforeach
             @endif
-            </div>
         </div>
     </div>
+</div>
 
     @include('partials.footer')
 

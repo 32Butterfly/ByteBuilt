@@ -3,26 +3,41 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Cart;
 use App\Models\Product;
+use App\Models\Orders;
+use Illuminate\Support\Facades\Hash;
 
 class AdminDashboardController extends Controller
 {
     public function index()
     {
-        // Fetch users from the database
-        $users = User::all();
+        $users = User::paginate(8);
         
-        // Pass the users data to the view
-        return view('adminDashboard', compact('users'));   // Update the view name if needed
+        return view('adminDashboard', compact('users'));
+    }
+
+    public function orders()
+    {
+        $orders =  Orders::with(['user', 'city'])->paginate(10);
+    
+        return view('adminManageOrders', compact('orders'));
     }
 
     public function products()
     {
-        // Fetch users from the database
-        $products = Product::all();
+        $products = Product::Paginate(5);
         
-        // Pass the users data to the view
-        return view('adminManageProducts', compact('products'));   // Update the view name if needed
+        return view('adminManageProducts', compact('products'));
+    }
+ 
+    public function cart()
+    {
+        $carts = Cart::with(['product'])
+            ->get()
+            ->groupBy('user_id');
+        
+        return view('adminManageCarts', compact('carts'));
     }
 
     public function adminManageUsers(Request $request)
@@ -70,5 +85,43 @@ class AdminDashboardController extends Controller
         }
     
         return back()->with('error', 'Invalid action.');
+    }
+
+    public function adminManageOrders(Request $request)
+    {
+        $ids = $request->input('order_ids', []);
+        $action = $request->input('action');
+    
+        if (empty($ids)) {
+            return back()->with('error', 'No orders selected.');
+        }
+    
+        if ($action === 'delete') {
+            Orders::whereIn('id', $ids)->delete();
+            return back()->with('success', 'Orders deleted successfully.');
+        }
+    
+        return back()->with('error', 'Invalid action.');
+    }
+
+    public function addUser(Request $request)
+    {
+        // Validate input data
+        $request->validate([
+            'name' => 'required|string|max:50',
+            'email' => 'required|email|unique:users,email|max:100',
+            'password' => 'required|string|min:8',
+            'role' => 'required|in:superuser,user',
+        ]);
+
+        // Create a new user
+        $user = new User();
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = Hash::make($request->input('password'));
+        $user->role = $request->input('role');
+        $user->save();
+
+        return redirect()->route('adminDashboard')->with('success', 'User created successfully!');
     }
 }

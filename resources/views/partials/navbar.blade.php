@@ -24,9 +24,11 @@
       <div class="navbar-item">
         @auth
           @if(auth()->user()->profile_picture)
-            <!--- not working yet will maybe do in the future  <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" alt="Profile Picture" class="profile-pic"> -->
+            <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="Profile Picture" class="is-rounded" style="width: 30px; height: 36px; object-fit: cover; border-radius: 50%;">
           @else
+          <div class = "Profile-pic">
             <img src="{{ asset('images/default_avatar.png') }}" alt="Default Avatar" class="is-rounded" style="width: 36px; height: 36px; object-fit: cover;">
+          </div>
           @endif
 
           <div class="dropdown is-hoverable">

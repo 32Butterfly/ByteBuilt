@@ -7,30 +7,30 @@
 }
 
 body {
-    background-color: #f8f8f8; /* Set light background color */
+    background-color: #f8f8f8;
 }
 
-/* Ensure the columns take full height and align properly */
+
 .landing-section .columns {
-    height: 90vh;  /* Set the height of the columns to 100% of the viewport */
+    height: 90vh;  
 }
 
 /* Styling for the left column with text */
 .landing-section .column.is-one-third:first-child {
     display: flex;
     flex-direction: column;
-    justify-content: center;  /* Vertically align content */
-    align-items: flex-start;  /* Align content to the left */
+    justify-content: center;  
+    align-items: flex-start; 
 }
 
-/* Styling for the title */
+
 .landing-section .title {
-    font-size: 2.5rem;  /* Title size */
+    font-size: 2.5rem;  
     font-weight: bold;
     color: #333;
 }
 
-/* Styling for the subtitle (the paragraph below the title) */
+
 .landing-section .subtitle {
     font-size: 1.2rem;
     color: #555;
@@ -39,10 +39,10 @@ body {
 }
 
 .landing-section .column.is-two-thirds.image-column {
-    background-image: url('/images/gaming_pc.jpg');  /* Replace with your image URL */
-    background-size: cover;  /* Make the image cover the entire column */
-    background-position: center;  /* Center the image */
-    height: 90vh;  /* Make sure the image fills the full height of the section */
+    background-image: url('/images/gaming_pc.jpg');  
+    background-size: cover;  
+    background-position: center;  
+    height: 90vh;  
   }
   
   .landing-section .column.is-one-third{
@@ -61,7 +61,7 @@ body {
     }
 
     .landing-section .title {
-        font-size: 2rem;  /* Smaller font size on mobile */
+        font-size: 2rem; 
     }
 
     .landing-section .subtitle {

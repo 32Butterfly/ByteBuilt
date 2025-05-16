@@ -2,7 +2,6 @@
     <div class="container is-flex is-justify-content-flex-end">
         <div style="max-width: 400px;">
             
-            <!-- Error message -->
             @if ($errors->any())
             <article class="message is-danger" style="position: fixed; top: 20px; right: 20px; z-index: 9999; max-width: 400px;" id="errorMessage">
                 <div class="message-header">
@@ -15,7 +14,6 @@
             </article>
             @endif
 
-            <!-- Session error message -->
             @if (session('error'))
             <article class="message is-danger" style="position: fixed; top: 20px; right: 20px; z-index: 9999; max-width: 400px;" id="errorMessage">
                 <div class="message-header">
@@ -28,7 +26,6 @@
             </article>
             @endif
 
-            <!-- Session success message -->
             @if (session('success'))
             <article class="message is-success" style="position: fixed; top: 20px; right: 20px; z-index: 9999; max-width: 400px;" id="successMessage">
                 <div class="message-header">

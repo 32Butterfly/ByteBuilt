@@ -18,11 +18,11 @@ class OrderManager extends Controller
         return view('checkout', compact('cities'));
     }
 
-    function checkoutPost(Request $request){
+    function checkoutPost(Request $request){ 
         $request->validate([
             'address' => 'required',
             'city' => 'required',
-            'phone' => 'required',
+            'phone' => ['required', 'numeric'],
         ]);
 
         $cartItems = DB::table('cart')
@@ -58,14 +58,15 @@ class OrderManager extends Controller
             ];
         }
 
-        $order = new Orders();
-        $order->user_id = Auth::user()->id;
-        $order->address = $request->address;
-        $order->city = $request->city;
-        $order->phone = $request->phone;
-        $order->product_id = json_encode($productsIds);
-        $order->total_price = $totalPrice;
-        $order->quantity = json_encode($quantities);
+        $order = Orders::create([
+            'user_id'     => Auth::user()->id,
+            'address'     => $request->address,
+            'city'        => $request->city,
+            'phone'       => $request->phone,
+            'product_id'  => json_encode($productsIds),
+            'quantity'    => json_encode($quantities),
+            'total_price' => $totalPrice,
+        ]);
 
         if($order->save()){
             DB::table('cart')->where('user_id', Auth::user()->id)->delete();
@@ -90,11 +91,11 @@ class OrderManager extends Controller
     }
 
     function paymentSuccess($order_id){
-        return "success " . $order_id;
+        return redirect()->route('orderHistory')->with('success', 'Payment successful for order #' . $order_id);
     }
 
     function paymentError(){
-        return "error";
+        return redirect()->route('orderHistory')->with('error', 'Payment was unsuccessfull');;
     }
 
     function webhookStripe(Request $request){

@@ -40,7 +40,7 @@
                 <div class="media-content">
                     <p class="title is-6">{{ $cart->name }}</p>
                     <div class="is-flex is-justify-content-space-between">
-                        <p class="subtitle is-6">Price: {{ $cart->price }}{{ $cart->currency }}</p>                      
+                        <p class="subtitle is-6">Price: {{ $cart->price * $cart->quantity }}{{ $cart->currency }}</p>                      
                     </div>
                     <div class="is-flex is-justify-content-space-between quantityMaker">
                         <form action="{{ route('cart.removeOne') }}" method="POST" style="display:inline;">
@@ -51,24 +51,30 @@
                             </button>
                         </form>
                         <p class="subtitle is-6" style="margin-bottom: 0;">Quantity: {{ $cart->quantity }}</p>
-                        <button class="button is-small is-success is-rounded" title="Add one">
-                                <i class="fas fa-plus"></i>
-                        </button>  
+                        <form action="{{ route('cart.addOne') }}" method="POST" style="display:inline;">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $cart->product_id }}">
+                            <button class="button is-small is-success is-rounded" title="Add one">
+                                    <i class="fas fa-plus"></i>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </article>
             @endforeach
             @endif
             </div>
+
+            <div class = "is-flex is-justify-content-end">
+                @if(!$cartItems->isEmpty())
+                <a href="{{ route('showCheckout') }}" class="button is-primary">
+                    <span class="icon"><i class="fas fa-credit-card"></i></span>
+                    <span>Buy Now</span>
+                </a>
+                @endif
+            </div>
         </div>
     </div>
-
-    @if(!$cartItems->isEmpty())
-    <a href="{{ route('showCheckout') }}" class="button is-primary">
-        <span class="icon"><i class="fas fa-credit-card"></i></span>
-        <span>Buy Now</span>
-    </a>
-    @endif
 
     <nav class="pagination is-centered" role="navigation" aria-label="pagination">
         <ul class="pagination-list">
