@@ -64,6 +64,9 @@ Route::middleware([CheckSuperuser::class])->group(function () {
 
     Route::post('/admin/add-order', [AdminDashboardController::class, 'addOrder'])
         ->name('adminAddOrder');
+    
+    Route::post('/admin/add-cart', [AdminDashboardController::class, 'addCart'])
+        ->name('adminAddCart');
 });
 
 Route::middleware("auth")->group(function(){

@@ -33,7 +33,7 @@
               <div class="is-flex is-align-items-center is-justify-content-space-between">
                 <h1 class="subtitle has-text-weight-medium">Users</h1>
                 <div class="is-flex">
-                  <button type="button" class="button is-primary mr-2" id="openModalBtn">
+                  <button type="button" class="button is-primary open-modal-btn mr-2" data-target="addUserModal">
                     <span class="icon"><i class="fas fa-user-plus"></i></span>
                     <span>Add New User</span>
                   </button>
@@ -86,11 +86,11 @@
 
     <!-- Add New User Modal -->
     <div class="modal" id="addUserModal">
-      <div class="modal-background"></div>
+      <div class="modal-background" data-close></div>
       <div class="modal-card">
         <header class="modal-card-head">
           <p class="modal-card-title">Add New User</p>
-          <button class="delete is-large" aria-label="close" id="closeModalBtn"></button>
+          <button class="delete is-large" aria-label="close" id="closeModalBtn" data-close></button>
         </header>
 
         <section class="modal-card-body">
@@ -137,7 +137,7 @@
       </div>
     </div>
 
-    <script src="{{ asset('js/adminUserModal.js') }}"></script>
+    <script src="{{ asset('js/adminModal.js') }}"></script>
 
     @include('partials.footer')
   </body>

@@ -35,7 +35,7 @@
         <div class="is-flex is-align-items-center is-justify-content-space-between">
             <h1 class="subtitle has-text-weight-medium">Products</h1>
             <div class="is-flex">
-            <button type="button" class="button is-success mr-2" id="openModalBtn">
+            <button type="button" class="button is-success open-modal-btn mr-2" data-target="addProductModal">
               <span class="icon"><i class="fas fa-box"></i></span>
               <span>Add New Product</span>
             </button>
@@ -94,12 +94,13 @@
 </div>
 </div>
 
+<!-- Add New Product Modal -->
 <div class="modal" id="addProductModal">
-  <div class="modal-background"></div>
+  <div class="modal-background" data-close></div>
   <div class="modal-card">
     <header class="modal-card-head">
       <p class="modal-card-title">Add New Product</p>
-      <button class="delete is-large" aria-label="close" id="closeModalBtn"></button>
+      <button class="delete is-large" aria-label="close" id="closeModalBtn" data-close></button>
     </header>
     <section class="modal-card-body">
       <form method="POST" action="{{ route('adminAddProduct') }}" enctype="multipart/form-data">
@@ -154,7 +155,7 @@
   </div>
 </div>
 
-<script src = "{{ asset('js/adminProductModal.js') }}"></script>
+<script src = "{{ asset('js/adminModal.js') }}"></script>
 <script src="{{ asset('js/checkboxProducts.js') }}"></script>
 
  @include('partials.footer')

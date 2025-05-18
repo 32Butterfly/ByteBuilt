@@ -42,6 +42,21 @@ class AdminDashboardController extends Controller
         return view('adminManageCarts', compact('carts'));
     }
 
+    public function addCart(Request $request)
+    {
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'product_id' => 'required|exists:products,id',
+        ]);
+
+        Cart::create([
+            'user_id' => $request->user_id,
+            'product_id' => $request->product_id,
+        ]);
+
+        return redirect()->back()->with('success', 'Cart entry added successfully.');
+    }
+
     public function adminManageUsers(Request $request)
     {
         $ids = $request->input('user_ids', []);

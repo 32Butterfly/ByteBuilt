@@ -34,7 +34,7 @@
               <div class="is-flex is-align-items-center is-justify-content-space-between">
                 <h1 class="subtitle has-text-weight-medium">Orders</h1>
                 <div class="is-flex">
-                   <button type="button" class="button is-primary mr-2" id="openAddOrderModalBtn">
+                   <button type="button" class="button is-primary open-modal-btn mr-2" data-target="addOrderModal">
                       <span class="icon"><i class="fas fa-shopping-cart"></i></span>
                       <span>Add New Order</span>
                   </button>
@@ -76,7 +76,7 @@
           </form>
         </section>
 
-          <nav class="pagination is-centered has-text-weight-medium has-text-black" role="navigation" aria-label="pagination" style="margin-bottom: 45px;">
+        <nav class="pagination is-centered has-text-weight-medium has-text-black" role="navigation" aria-label="pagination" style="margin-bottom: 45px;">
           <ul class="pagination-list">
               {{ $orders->links() }}
           </ul>
@@ -87,11 +87,11 @@
     </div>
 
     <div class="modal" id="addOrderModal">
-      <div class="modal-background"></div>
+      <div class="modal-background" data-close></div>
       <div class="modal-card" style="max-width: 700px;">
         <header class="modal-card-head">
           <p class="modal-card-title">Add New Order</p>
-          <button class="delete" aria-label="close" id="closeAddOrderModalBtn"></button>
+          <button class="delete is-large" aria-label="close" id="closeAddOrderModalBtn" data-close></button>
         </header>
         <section class="modal-card-body">
           <form method="POST" action="{{ route('adminAddOrder') }}">
@@ -173,7 +173,7 @@
       </div>
     </div>
 
-    <script src="{{ asset('js/adminOrderModal.js') }}"></script>
+    <script src="{{ asset('js/adminModal.js') }}"></script>
 
     @include('partials.footer')
   </body>

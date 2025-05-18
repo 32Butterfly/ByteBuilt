@@ -34,6 +34,10 @@
               <div class="is-flex is-align-items-center is-justify-content-space-between">
                 <h1 class="subtitle has-text-weight-medium">Carts</h1>
                 <div class="is-flex">
+                  <button type="button" class="button is-primary open-modal-btn mr-2" data-target="addCartModal">
+                      <span class="icon"><i class="fas fa-shopping-bag"></i></span>
+                      <span>Add New Order</span>
+                  </button>
                   <button type="submit" name="action" value="delete" class="button is-danger mr-2">Delete Selected</button>
                 </div>
               </div>
@@ -67,6 +71,43 @@
 
       </div>
     </div>
+
+    <!-- Add New Cart Modal -->
+    <div class="modal" id="addCartModal">
+      <div class="modal-background" data-close></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Add New Cart Entry</p>
+          <button class="delete is-large" aria-label="close" id="closeAddCartModalBtn" data-close></button>
+        </header>
+
+        <section class="modal-card-body">
+          <form method="POST" action="{{ route('adminAddCart') }}">
+            @csrf
+            <div class="field">
+              <label class="label">User ID</label>
+              <div class="control">
+                <input class="input" type="number" name="user_id" placeholder="Enter User ID" required>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Product ID</label>
+              <div class="control">
+                <input class="input" type="number" name="product_id" placeholder="Enter Product ID" required>
+              </div>
+            </div>
+
+            <div class="control mt-4">
+              <button type="submit" class="button is-primary is-fullwidth">Add Cart Entry</button>
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+
+    <script src="{{ asset('js/checkboxCarts.js') }}"></script>
+    <script src="{{ asset('js/adminModal.js') }}"></script>
 
     @include('partials.footer')
   </body>
