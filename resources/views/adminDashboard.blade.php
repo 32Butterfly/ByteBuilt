@@ -45,7 +45,7 @@
               <table class="table is-fullwidth">
                 <thead>
                   <tr>
-                    <th><input type="checkbox" id="select-all"></th>
+                    <th><input type="checkbox" data-select-all="user_ids"></th>
                     <th>Role</th>
                     <th>Name</th>
                     <th>Email</th>
@@ -58,7 +58,7 @@
                     <tr>
                       <td>
                         @if ($user->id !== 1)
-                          <input type="checkbox" name="user_ids[]" value="{{ $user->id }}">
+                          <input type="checkbox" name="user_ids[]" value="{{ $user->id }}"  data-checkbox-group="user_ids">
                         @endif
                       </td>
                       <td>{{ $user->role }}</td>
@@ -80,7 +80,7 @@
           </ul>
         </nav>
 
-        <script src="{{ asset('js/checkboxUsers.js') }}"></script>
+        <script src="{{ asset('js/adminCheckboxSelectAll.js') }}"></script>
       </div>
     </div>
 

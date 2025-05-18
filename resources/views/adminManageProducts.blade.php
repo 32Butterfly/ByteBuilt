@@ -46,7 +46,7 @@
         <table class="table is-fullwidth is-striped">
             <thead>
                 <tr>
-                    <th><input type="checkbox" id="select-all-products"></th>
+                    <th><input type="checkbox" data-select-all="product_ids"></th>
                     <th>ID</th>
                     <th>Name</th>
                     <th>Specs</th>
@@ -57,7 +57,7 @@
             <tbody>
                 @foreach ($products as $product)
                     <tr>
-                        <td><input type="checkbox" name="product_ids[]" value="{{ $product->id }}"></td>
+                        <td><input type="checkbox" name="product_ids[]" value="{{ $product->id }}" data-checkbox-group="product_ids"></td>
                         <td class="product-name">{{ $product->id }}</td>
                         <td class="product-name">{{ $product->name }}</td>
                         <td>
@@ -94,7 +94,6 @@
 </div>
 </div>
 
-<!-- Add New Product Modal -->
 <div class="modal" id="addProductModal">
   <div class="modal-background" data-close></div>
   <div class="modal-card">
@@ -156,7 +155,7 @@
 </div>
 
 <script src = "{{ asset('js/adminModal.js') }}"></script>
-<script src="{{ asset('js/checkboxProducts.js') }}"></script>
+<script src="{{ asset('js/adminCheckboxSelectAll.js') }}"></script>
 
  @include('partials.footer')
 </body>

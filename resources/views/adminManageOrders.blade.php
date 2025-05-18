@@ -45,7 +45,7 @@
               <table class="table is-fullwidth is-striped">
                 <thead>
                   <tr>
-                    <th><input type="checkbox" id="select-all-orders"></th>
+                    <th><input type="checkbox" data-select-all="order_ids"></th>
                     <th>ID:</th>
                     <th>User_ID:</th>
                     <th>Product_Name:</th>
@@ -57,7 +57,7 @@
                 <tbody>
                   @foreach ($orders as $order)
                     <tr>
-                      <td><input type="checkbox" name="order_ids[]" value="{{ $order->id }}"></td>
+                      <td><input type="checkbox" name="order_ids[]" value="{{ $order->id }}" data-checkbox-group="order_ids"></td>
                       <td class="order-id">{{ $order->id }}</td>
                       <td class="order-user-id">{{ $order->user_id }}</td>
                       <td class="order-product-id">
@@ -82,7 +82,7 @@
           </ul>
         </nav>
 
-        <script src="{{ asset('js/checkboxOrders.js') }}"></script>
+        <script src="{{ asset('js/adminCheckboxSelectAll.js') }}"></script>
       </div>
     </div>
 
