@@ -94,7 +94,6 @@
 </div>
 </div>
 
-<!-- Add New Product Modal -->
 <div class="modal" id="addProductModal">
   <div class="modal-background"></div>
   <div class="modal-card">
@@ -103,8 +102,8 @@
       <button class="delete is-large" aria-label="close" id="closeModalBtn"></button>
     </header>
     <section class="modal-card-body">
-      <!-- Form to add new product -->
-
+      <form method="POST" action="{{ route('adminAddProduct') }}" enctype="multipart/form-data">
+        @csrf
 
         <div class="field">
           <label class="label">Product Name</label>

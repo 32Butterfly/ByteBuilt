@@ -34,7 +34,11 @@
               <div class="is-flex is-align-items-center is-justify-content-space-between">
                 <h1 class="subtitle has-text-weight-medium">Orders</h1>
                 <div class="is-flex">
-                  <button type="submit" name="action" value="delete" class="button is-danger mr-2">Delete Selected</button>
+                   <button type="button" class="button is-primary mr-2" id="openAddOrderModalBtn">
+                      <span class="icon"><i class="fas fa-shopping-cart"></i></span>
+                      <span>Add New Order</span>
+                  </button>
+                  <button type="submit" name="action" value="delete" class="button is-danger">Delete Selected</button>
                 </div>
               </div>
 
@@ -72,9 +76,104 @@
           </form>
         </section>
 
+          <nav class="pagination is-centered has-text-weight-medium has-text-black" role="navigation" aria-label="pagination" style="margin-bottom: 45px;">
+          <ul class="pagination-list">
+              {{ $orders->links() }}
+          </ul>
+        </nav>
+
         <script src="{{ asset('js/checkboxOrders.js') }}"></script>
       </div>
     </div>
+
+    <div class="modal" id="addOrderModal">
+      <div class="modal-background"></div>
+      <div class="modal-card" style="max-width: 700px;">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Add New Order</p>
+          <button class="delete" aria-label="close" id="closeAddOrderModalBtn"></button>
+        </header>
+        <section class="modal-card-body">
+          <form method="POST" action="{{ route('adminAddOrder') }}">
+          @csrf
+
+            <div class="field">
+              <label class="label">User ID</label>
+              <div class="control">
+                <input class="input" type="number" name="user_id" placeholder="User ID" required>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Products</label>
+              <div class="control">
+                <textarea class="textarea" name="product_id" placeholder='e.g. [1,2,3]' required></textarea>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Quantity</label>
+              <div class="control">
+                <textarea class="textarea" name="quantity" placeholder='e.g. [2,1,4]' required></textarea>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Total Price</label>
+              <div class="control">
+                <input class="input" type="number" step="0.01" name="total_price" placeholder="Total price" required>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">City</label>
+              <div class="control">
+                <div class="select is-fullwidth">
+                  <select name="city" required>
+                    <option value="" disabled selected>Select a city</option>
+                    @foreach ($cities as $city)
+                      <option value="{{ $city->name }}">{{ $city->name }}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Address</label>
+              <div class="control">
+                <input class="input" type="text" name="address" placeholder="Address" required>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Phone</label>
+              <div class="control">
+                <input class="input" type="text" name="phone" placeholder="Phone" required>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Payment ID</label>
+              <div class="control">
+                <input class="input" type="text" name="payment_id" placeholder="Payment ID (optional)">
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Status</label>
+              <div class="control">
+                <input class="input" type="text" name="status" placeholder="Status (optional)">
+              </div>
+            </div>
+
+            <button type="submit" class="button is-success is-fullwidth mt-4">Add Order</button>
+          </form>
+        </section>
+      </div>
+    </div>
+
+    <script src="{{ asset('js/adminOrderModal.js') }}"></script>
 
     @include('partials.footer')
   </body>

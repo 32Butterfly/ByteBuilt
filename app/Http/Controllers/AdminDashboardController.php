@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Cart;
+use App\Models\City;
 use App\Models\Product;
 use App\Models\Orders;
 use Illuminate\Support\Facades\Hash;
@@ -19,9 +20,10 @@ class AdminDashboardController extends Controller
 
     public function orders()
     {
-        $orders =  Orders::with(['user', 'city'])->paginate(10);
-    
-        return view('adminManageOrders', compact('orders'));
+        $orders = Orders::with(['user'])->paginate(3);
+        $cities = City::all();
+
+        return view('adminManageOrders', compact('orders', 'cities'));
     }
 
     public function products()
@@ -87,6 +89,33 @@ class AdminDashboardController extends Controller
         return back()->with('error', 'Invalid action.');
     }
 
+    public function addProduct(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:100',
+            'specs' => 'required|json',
+            'price' => 'required|numeric',
+            'currency' => 'required|string|in:$,€,£',
+            'image' => 'nullable|image|max:2048',
+        ]);
+
+        $product = new Product();
+        $product->name = $request->input('name');
+        $product->specs = json_decode($request->input('specs'), true);
+        $product->price = $request->input('price');
+        $product->currency = $request->input('currency');
+
+        if ($image = $request->file('image')) {
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('images'), $imageName);
+            $product->image = "images/{$imageName}";
+        }
+
+        $product->save();
+
+        return redirect()->route('adminManageProducts')->with('success', 'Product added successfully!');
+    }
+
     public function adminManageOrders(Request $request)
     {
         $ids = $request->input('order_ids', []);
@@ -102,6 +131,36 @@ class AdminDashboardController extends Controller
         }
     
         return back()->with('error', 'Invalid action.');
+    }
+
+    public function addOrder(Request $request)
+    {
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'product_id' => 'required|json',
+            'quantity' => 'required|json',
+            'total_price' => 'required|numeric',
+            'city' => 'required|string|max:100',
+            'address' => 'required|string|max:255',
+            'phone' => 'required|string|max:15',
+        ]);
+
+        $productIds = json_decode($request->input('product_id'), true);
+        $quantities = json_decode($request->input('quantity'), true);
+
+        $order = new Orders();
+        $order->user_id = $request->input('user_id');
+        $order->product_id = json_encode($productIds);
+        $order->quantity = json_encode($quantities);
+        $order->total_price = $request->input('total_price');
+        $order->city = $request->input('city');
+        $order->address = $request->input('address');
+        $order->phone = $request->input('phone');
+        $order->payment_id = $request->input('payment_id');
+        $order->status = $request->input('status');
+        $order->save();
+
+        return redirect()->route('adminManageOrders')->with('success', 'Order added successfully!');
     }
 
     public function adminManageCarts(Request $request)

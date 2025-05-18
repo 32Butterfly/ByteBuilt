@@ -7,6 +7,7 @@ use App\Http\Controllers\OrderManager;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\UploadManager;
 use App\Http\Middleware\CheckSuperuser;
+use App\Http\Controllers\ForgetPasswordManager;
 
 Route::get('/', function () {
     return view('home');
@@ -19,6 +20,16 @@ Route::post('/login', [AuthManager::class, 'loginPost'])->name('login.post');
 
 Route::get('/register', [AuthManager::class, 'register'])->name('register');
 Route::post('/register', [AuthManager::class, 'registerPost'])->name('register.post');
+
+Route::get('/forget-password', [ForgetPasswordManager::class, 'forgetPassword'])
+    ->name('forgetPassword');
+Route::post('/forget-password', [ForgetPasswordManager::class, 'forgetPasswordPost'])
+    ->name('forgetPassword.post');
+
+Route::get('/reset-password/{token}', [ForgetPasswordManager::class, 'resetPassword'])
+    ->name('resetPassword');
+Route::post('/reset-password', [ForgetPasswordManager::class, 'resetPasswordPost'])
+    ->name('resetPassword.post');
 
 Route::middleware([CheckSuperuser::class])->group(function () {
     Route::get('/admin', [AdminDashboardController::class, 'index'])
@@ -50,6 +61,9 @@ Route::middleware([CheckSuperuser::class])->group(function () {
     
     Route::post('/admin/add-product', [AdminDashboardController::class, 'addProduct'])
         ->name('adminAddProduct');
+
+    Route::post('/admin/add-order', [AdminDashboardController::class, 'addOrder'])
+        ->name('adminAddOrder');
 });
 
 Route::middleware("auth")->group(function(){
