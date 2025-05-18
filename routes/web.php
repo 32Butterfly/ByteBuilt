@@ -3,10 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthManager;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ForgetPasswordManager;
 use App\Http\Controllers\OrderManager;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\UploadManager;
+use App\Http\Middleware\CheckSuperuser;
 
 Route::get('/', function () {
     return view('home');
@@ -19,35 +19,42 @@ Route::post('/login', [AuthManager::class, 'loginPost'])->name('login.post');
 
 Route::get('/register', [AuthManager::class, 'register'])->name('register');
 Route::post('/register', [AuthManager::class, 'registerPost'])->name('register.post');
-Route::get('/logout', [AuthManager::class, 'logout'])->name('logout');
 
-Route::middleware([\App\Http\Middleware\CheckSuperuser::class])       // only logged‑in superusers
-     ->get('/admin',[AdminDashboardController::class, 'index'])
-     ->name('adminDashboard');
-     
-Route::middleware([\App\Http\Middleware\CheckSuperuser::class])       // only logged‑in superusers
-     ->get('/admin/products',[AdminDashboardController::class, 'products'])
-     ->name('adminManageProducts');
+Route::middleware([CheckSuperuser::class])->group(function () {
+    Route::get('/admin', [AdminDashboardController::class, 'index'])
+        ->name('adminDashboard');
 
-Route::middleware([\App\Http\Middleware\CheckSuperuser::class])       // only logged‑in superusers
-     ->get('/admin/orders',[AdminDashboardController::class, 'orders'])
-     ->name('adminManageOrders');
+    Route::get('/admin/products', [AdminDashboardController::class, 'products'])
+        ->name('adminManageProducts');
 
-Route::middleware([\App\Http\Middleware\CheckSuperuser::class])       // only logged‑in superusers
-     ->get('/admin/carts',[AdminDashboardController::class, 'cart'])
-     ->name('adminManageCarts');       
+    Route::get('/admin/orders', [AdminDashboardController::class, 'orders'])
+        ->name('adminManageOrders');
 
-Route::get('/forget-password', [ForgetPasswordManager::class, 'forgetPassword'])
-    ->name('forgetPassword');
-Route::post('/forget-password', [ForgetPasswordManager::class, 'forgetPasswordPost'])
-    ->name('forgetPassword.post');
+    Route::get('/admin/carts', [AdminDashboardController::class, 'cart'])
+        ->name('adminManageCarts');
 
-Route::get('/reset-password/{token}', [ForgetPasswordManager::class, 'resetPassword'])
-    ->name('resetPassword');
-Route::post('/reset-password', [ForgetPasswordManager::class, 'resetPasswordPost'])
-    ->name('resetPassword.post');
+    Route::post('/admin/adminManageUsers', [AdminDashboardController::class, 'adminManageUsers'])
+    ->name('adminManageUsers');
+
+    Route::post('/admin/adminProducts', [AdminDashboardController::class, 'adminManageProducts'])
+        ->name('adminProducts');
+
+    Route::post('/admin/adminOrders', [AdminDashboardController::class, 'adminManageOrders'])
+        ->name('adminOrders');
+        
+    Route::post('/admin/adminCarts', [AdminDashboardController::class, 'adminManageCarts'])
+        ->name('adminCarts');
+
+    Route::post('/admin/add-user', [AdminDashboardController::class, 'addUser'])
+        ->name('adminAddUser');
+    
+    Route::post('/admin/add-product', [AdminDashboardController::class, 'addProduct'])
+        ->name('adminAddProduct');
+});
 
 Route::middleware("auth")->group(function(){
+    Route::get('/logout', [AuthManager::class, 'logout'])->name('logout');
+
     Route::get('/cart/{id}', [ProductController::class, 'addToCart'])->name('cartAdd');
 
     Route::get('/cart', [ProductController::class, 'showCart'])->name('showCart');
@@ -75,15 +82,3 @@ Route::middleware("auth")->group(function(){
         Route::post('/cart/add-one', [ProductController::class, 'addOne'])
         ->name('cart.addOne');
 });
-
-Route::post('/admin/adminManageUsers', [AdminDashboardController::class, 'adminManageUsers'])
-    ->name('adminManageUsers');
-
-Route::post('/admin/adminProducts', [AdminDashboardController::class, 'adminManageProducts'])
-    ->name('adminProducts');
-
-Route::post('/admin/adminOrders', [AdminDashboardController::class, 'adminManageOrders'])
-    ->name('adminOrders');    
-
-Route::post('/admin/add-user', [AdminDashboardController::class, 'addUser'])
-    ->name('adminAddUser');

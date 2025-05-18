@@ -104,6 +104,23 @@ class AdminDashboardController extends Controller
         return back()->with('error', 'Invalid action.');
     }
 
+    public function adminManageCarts(Request $request)
+    {
+        $ids = $request->input('cart_ids', []);
+        $action = $request->input('action');
+    
+        if (empty($ids)) {
+            return back()->with('error', 'No cart selected.');
+        }
+    
+        if ($action === 'delete') {
+            Cart::whereIn('user_id', $ids)->delete();
+            return back()->with('success', 'Carts deleted successfully.');
+        }
+    
+        return back()->with('error', 'Invalid action.');
+    }
+
     public function addUser(Request $request)
     {
         // Validate input data

@@ -27,6 +27,8 @@
         </section>
 
         <section class="section">
+          <form method="POST" action="{{ route('adminCarts') }}">
+           @csrf
 
             <div class="box">
               <div class="is-flex is-align-items-center is-justify-content-space-between">
@@ -39,9 +41,9 @@
               <table class="table is-fullwidth is-striped">
                 <thead>
                   <tr>
-                    <th><input type="checkbox" id="select-all-orders"></th>
+                    <th><input type="checkbox" id="select-all-carts"></th>
                     <th>User_ID:</th>
-                    <th>Product_ID:</th>
+                    <th>Product_Name:</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -51,17 +53,16 @@
                         <input type="checkbox" name="cart_ids[]" value="{{ $userId }}"></td>
                       <td class="order-id">{{ $userId }}</td>
                       <td class="order-user-id">
-                        [
                         @foreach ($userCarts as $cart)
                           {{ $cart->product->name }}<br>
                         @endforeach
-                        ]
-                      </td>
+                      </td> 
                     </tr>
                   @endforeach
                 </tbody>
               </table>
             </div>
+          </form>
         </section>
 
       </div>

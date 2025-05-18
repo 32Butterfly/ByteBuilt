@@ -33,12 +33,12 @@
               <div class="is-flex is-align-items-center is-justify-content-space-between">
                 <h1 class="subtitle has-text-weight-medium">Users</h1>
                 <div class="is-flex">
-                  <button type="submit" name="action" value="toggleRole" class="button is-info mr-2">Change Role</button>
-                  <button type="submit" name="action" value="delete" class="button is-danger mr-2">Delete Selected</button>
-                  <button type="button" class="button is-primary" id="openModalBtn">
+                  <button type="button" class="button is-primary mr-2" id="openModalBtn">
                     <span class="icon"><i class="fas fa-user-plus"></i></span>
                     <span>Add New User</span>
                   </button>
+                  <button type="submit" name="action" value="delete" class="button is-danger mr-2">Delete Selected</button>
+                  <button type="submit" name="action" value="toggleRole" class="button is-info">Change Role</button>
                 </div>
               </div>
 
