@@ -20,8 +20,8 @@ class AuthManager extends Controller
 
     function loginPost(Request $request) {
         $request->validate([
-            'email' => 'required',
-            'password' => 'required'
+            'email' => 'required|email|exists:users,email|max:100',
+            'password' => 'required|min:6|max:30',
         ]);
 
         $credentials = $request->only('email', 'password');
@@ -34,9 +34,9 @@ class AuthManager extends Controller
 
     function registerPost(Request $request) {
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6|confirmed'
+            'name' => 'required|max:30',
+            'email' => 'required|email|unique:users,email|max:100',
+            'password' => 'required|min:6|confirmed|max:30'
         ]);
 
         $data['name'] = $request->name;

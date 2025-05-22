@@ -35,11 +35,12 @@ class AdminDashboardController extends Controller
  
     public function cart()
     {
-        $carts = Cart::with(['product'])
-            ->get()
-            ->groupBy('user_id');
-        
-        return view('adminManageCarts', compact('carts'));
+
+        $users = User::whereHas('cart')
+            ->with(['cart.product']) 
+            ->paginate(10);
+            
+        return view('adminManageCarts', compact('users'));
     }
 
     public function addCart(Request $request)
@@ -155,7 +156,7 @@ class AdminDashboardController extends Controller
             'product_id' => 'required|json',
             'quantity' => 'required|json',
             'total_price' => 'required|numeric',
-            'city' => 'required|string|max:100',
+            'city' => 'required|exists:cities,id',
             'address' => 'required|string|max:255',
             'phone' => 'required|string|max:15',
         ]);
@@ -197,15 +198,13 @@ class AdminDashboardController extends Controller
 
     public function addUser(Request $request)
     {
-        // Validate input data
         $request->validate([
             'name' => 'required|string|max:50',
             'email' => 'required|email|unique:users,email|max:100',
-            'password' => 'required|string|min:8',
+            'password' => 'required|string|min:6|max:30',
             'role' => 'required|in:superuser,user',
         ]);
 
-        // Create a new user
         $user = new User();
         $user->name = $request->input('name');
         $user->email = $request->input('email');

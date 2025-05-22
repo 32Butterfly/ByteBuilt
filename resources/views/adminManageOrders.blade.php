@@ -132,7 +132,7 @@
                   <select name="city" required>
                     <option value="" disabled selected>Select a city</option>
                     @foreach ($cities as $city)
-                      <option value="{{ $city->name }}">{{ $city->name }}</option>
+                      <option value="{{ $city->id }}">{{ $city->name }}</option>
                     @endforeach
                   </select>
                 </div>
