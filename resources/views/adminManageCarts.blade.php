@@ -51,15 +51,16 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($carts as $userId => $userCarts)
+                  @foreach ($users as $user)
                     <tr>
                       <td>
-                        <input type="checkbox" name="cart_ids[]" value="{{ $userId }}" data-checkbox-group="cart_ids"></td>
-                      <td class="order-id">{{ $userId }}</td>
+                          <input type="checkbox" name="user_ids[]" value="{{ $user->id }}" data-checkbox-group="user_ids">
+                      </td>
+                      <td class="order-id">{{ $user->id }}</td>
                       <td class="order-user-id">
-                        @foreach ($userCarts as $cart)
-                          {{ $cart->product->name }}<br>
-                        @endforeach
+                          @foreach ($user->cart as $cart)
+                            {{ $cart->product->name }}<br>
+                          @endforeach
                       </td> 
                     </tr>
                   @endforeach
@@ -68,6 +69,12 @@
             </div>
           </form>
         </section>
+
+        <nav class="pagination is-centered has-text-weight-medium has-text-black" role="navigation" aria-label="pagination" style="margin-bottom: 45px;">
+          <ul class="pagination-list">
+              {{ $users->links() }}
+          </ul>
+        </nav>
 
       </div>
     </div>
