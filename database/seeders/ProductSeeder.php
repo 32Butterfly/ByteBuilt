@@ -13,7 +13,6 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        // Seed products table
         Product::create([
             'name' => 'PC | AMD Ryzen 7 7700, 32GB 6000MHz, SSD NVME M.2 2TB, RTX 4070',
             'specs' => [
@@ -33,7 +32,6 @@ class ProductSeeder extends Seeder
             'image' => 'images/listing1.jpg',
         ]);
 
-        // Product 2
         Product::create([
             'name' => 'Desktop Computer | Intel I5-14400F, 32GB 6000MHz, SSD NVME M.2 2TB, RTX 4070',
             'specs' => [
@@ -52,7 +50,6 @@ class ProductSeeder extends Seeder
             'image' => 'images/listing2.jpg',
         ]);
 
-        // Product 3
         Product::create([
             'name' => 'PC | AMD Ryzen 9 9950X3D, 64GB 6400MHz, NVME M.2 SSD 4TB, RTX 5090 32GB',
             'specs' => [
@@ -73,7 +70,6 @@ class ProductSeeder extends Seeder
             'image' => 'images/listing3.jpg',
         ]);
 
-        // Product 4
         Product::create([
             'name' => 'PC | AMD Ryzen 5 9600X, 32GB DDR5 6400MHz, NVME M.2 SSD 2TB, RX 7800 XT',
             'specs' => [
@@ -92,7 +88,6 @@ class ProductSeeder extends Seeder
             'currency' => '€',
             'image' => 'images/listing4.jpg',
         ]);
-
 
         Product::create([
             'name' => 'PC | AMD Ryzen 7 7800X3D, DDR5 32GB 6400MHz, SSD NVME M.2 2TB, RTX 4070 SUPER',
@@ -143,7 +138,7 @@ class ProductSeeder extends Seeder
                 'Storage (SSD)' => '2 TB M.2 NVME PCIe Gen4x4 7400/6500 MB/s',
                 'Computer case' => 'GENESIS IRID 505 V2 ARGB (WHITE)',
                 'Power Supply Unit (PSU)' => '850 W 80 Plus Gold (ATX 3.0) (WHITE)',
-                'WARRANTY' => 'Fiziniams asmenims garantija galioja 24 mėn - juridiniams asmenims – 12 mėn.',
+                'Warranty' => '24 months for individuals, 12 months for companies',
             ],
             'price' => 2149.00,
             'currency' => '€',
@@ -162,7 +157,7 @@ class ProductSeeder extends Seeder
                 'Storage (SSD)' => '2 TB M.2 NVME PCIe Gen4x4 7400/6500 MB/s',
                 'Computer case' => 'FRACTAL DESIGN POP MINI AIR RGB (WHITE)',
                 'Power Supply Unit (PSU)' => 'MSI MAG 850 W 80 Plus Gold (WHITE) (ATX 3.0)',
-                'WARRANTY' => 'Fiziniams asmenims garantija galioja 24 mėn - juridiniams asmenims – 12 mėn.',
+                'Warranty' => '24 months for individuals, 12 months for companies',
             ],
             'price' => 2049.00,
             'currency' => '€',
@@ -181,7 +176,7 @@ class ProductSeeder extends Seeder
                 'Storage (SSD)' => '2 TB M.2 NVME PCIe Gen4x4 7400/6500 MB/s',
                 'Computer case' => 'GENESIS IRID 505 V2 ARGB',
                 'Power Supply Unit (PSU)' => 'GIGABYTE 750 W 80 Plus Gold (ATX 3.0)',
-                'WARRANTY' => 'Fiziniams asmenims garantija galioja 24 mėn - juridiniams asmenims – 12 mėn.',
+                'Warranty' => '24 months for individuals, 12 months for companies',
             ],
             'price' => 1799.00,
             'currency' => '€',
@@ -200,7 +195,7 @@ class ProductSeeder extends Seeder
                 'Storage (SSD)' => '2 TB M.2 NVME PCIe Gen4x4 7400/6500 MB/s',
                 'Computer case' => 'GENESIS IRID 505 V2 ARGB',
                 'Power Supply Unit (PSU)' => '750 W 80 Plus Gold (ATX 3.0)',
-                'WARRANTY' => 'Fiziniams asmenims garantija galioja 24 mėn - juridiniams asmenims – 12 mėn.',
+                'Warranty' => '24 months for individuals, 12 months for companies',
             ],
             'price' => 1899.00,
             'currency' => '€',
@@ -219,7 +214,7 @@ class ProductSeeder extends Seeder
                 'Storage (SSD)' => '2 TB M.2 NVME PCIe Gen4x4 7400/6500 MB/s',
                 'Computer case' => 'GENESIS IRID 505 V2 ARGB',
                 'Power Supply Unit (PSU)' => '750 W 80 Plus Gold (ATX 3.0)',
-                'WARRANTY' => 'Fiziniams asmenims garantija galioja 24 mėn - juridiniams asmenims – 12 mėn.',
+                'Warranty' => '24 months for individuals, 12 months for companies',
             ],
             'price' => 1899.00,
             'currency' => '€',
@@ -227,7 +222,7 @@ class ProductSeeder extends Seeder
         ]);
 
         Product::create([
-            'name' => 'Stacionarus kompiuteris | I5-14400F, 32GB 6000MHz, SSD NVME M.2 2TB, RTX 4070',
+            'name' => 'Desktop Computer | I5-14400F, 32GB 6000MHz, SSD NVME M.2 2TB, RTX 4070',
             'specs' => [
                 'Manufacturer' => 'GameRoom',
                 'Processor (CPU)' => 'Intel I5-14400F',
@@ -237,11 +232,65 @@ class ProductSeeder extends Seeder
                 'Storage (SSD)' => '2TB M.2 NVME PCIe Gen3x4 3500/3000 MB/s',
                 'Computer case' => 'GENESIS Irid 503 ARGB V2',
                 'Power Supply Unit (PSU)' => '650W 80+ GOLD',
-                'WARRANTY' => 'Fiziniams asmenims garantija galioja 24 mėn - juridiniams asmenims – 12 mėn.',
+                'Warranty' => '24 months for individuals, 12 months for companies',
             ],
             'price' => 1349.00,
             'currency' => '€',
             'image' => 'images/listing12.jpg',
+        ]);
+
+        Product::create([
+            'name' => 'Desktop Computer | I5-12400F, 16GB 3200MHz, SSD NVME M.2 2TB, RTX 4060',
+            'specs' => [
+                'Manufacturer' => 'GameRoom',
+                'Processor (CPU)' => 'Intel I5-12400F',
+                'Motherboard' => 'INTEL H610M',
+                'Random Access Memory (RAM)' => '16GB (DDR4, 3200 MHz) RGB',
+                'Graphics card (GPU)' => 'Nvidia GeForce RTX™ 4060 8GB',
+                'Storage (SSD)' => '2TB M.2 NVME PCIe Gen3x4 3500/3000 MB/s',
+                'Computer case' => 'Deepcool CC360 ARGB',
+                'Power Supply Unit (PSU)' => '650W 80+ Silver',
+                'Warranty' => '24 months for individuals, 12 months for companies',
+            ],
+            'price' => 1049.00,
+            'currency' => '€',
+            'image' => 'images/listing13.jpg',
+        ]);
+
+        Product::create([
+            'name' => 'Desktop Computer | Ryzen 5 5600X, 16GB 3200MHz, SSD NVME M.2 2TB, RTX 4060',
+            'specs' => [
+                'Manufacturer' => 'GameRoom',
+                'Processor (CPU)' => 'AMD Ryzen 5 5600X',
+                'Motherboard' => 'AMD GIGABYTE A520M',
+                'Random Access Memory (RAM)' => '16GB (DDR4, 3200 MHz) RGB',
+                'Graphics card (GPU)' => 'Nvidia GeForce RTX™ 4060 8GB',
+                'Storage (SSD)' => '2TB M.2 NVME PCIe Gen3x4 3500/3000 MB/s',
+                'Computer case' => 'Deepcool CC360 ARGB',
+                'Power Supply Unit (PSU)' => '650W 80+ Bronze',
+                'Warranty' => '24 months for individuals, 12 months for companies',
+            ],
+            'price' => 999.00,
+            'currency' => '€',
+            'image' => 'images/listing14.jpg',
+        ]);
+
+        Product::create([
+            'name' => 'Desktop Computer | Ryzen 5 7600, 16GB 6000MHz, SSD NVME M.2 2TB, RTX 4060',
+            'specs' => [
+                'Manufacturer' => 'GameRoom',
+                'Processor (CPU)' => 'AMD Ryzen 5 7600',
+                'Motherboard' => 'AMD B650M GAMING',
+                'Random Access Memory (RAM)' => '16GB (DDR5, 6000 MHz) RGB',
+                'Graphics card (GPU)' => 'Nvidia GeForce RTX™ 4060 8GB',
+                'Storage (SSD)' => '2TB M.2 NVME PCIe Gen3x4 3500/3000 MB/s',
+                'Computer case' => 'MSI MAG FORGE M100R RGB BLACK',
+                'Power Supply Unit (PSU)' => '650W 80+ Silver',
+                'Warranty' => '24 months for individuals, 12 months for companies',
+            ],
+            'price' => 1099.00,
+            'currency' => '€',
+            'image' => 'images/listing15.jpg',
         ]);
     }
 }
