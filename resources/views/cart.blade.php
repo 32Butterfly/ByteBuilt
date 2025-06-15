@@ -11,7 +11,6 @@
 
   <body>
 
-    <!-- Include the navbar -->
     @include('partials.navbar')
     @include('partials.message-notifications')
 

@@ -10,17 +10,13 @@
   </head>
 
   <body>
-
-    <!-- Include the navbar -->
+    
     @include('partials.navbar')
-
     @include('partials.message-notifications')
 
-    <!-- Centered Login Form -->
     <div class="login-container">
       <div class="login-box">
         <h2 class="title has-text-centered has-text-primary">Checkout your purchase</h2>
-        <!-- 🌟 Start of form -->
         <form action="{{route ('checkoutPost') }}" method="POST">
         @csrf
        
@@ -63,7 +59,6 @@
                 </p>
             </div>
 
-
           <div class="field">
             <p class="control">
               <button type="submit" class="button is-success is-fullwidth">
@@ -72,7 +67,6 @@
             </p>
           </div>
         </form>
-        <!-- 🌟 End of form -->
       </div>
     </div>
     

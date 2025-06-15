@@ -84,7 +84,6 @@
       </div>
     </div>
 
-    <!-- Add New User Modal -->
     <div class="modal" id="addUserModal">
       <div class="modal-background" data-close></div>
       <div class="modal-card">

@@ -24,11 +24,11 @@
       <div class="navbar-item">
         @auth
           @if(auth()->user()->profile_picture)
-            <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="Profile Picture" class="is-rounded" style="width: 30px; height: 36px; object-fit: cover; border-radius: 50%;">
+            <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="Profile Picture" class="profile-image uploaded is-rounded">
           @else
-          <div class = "Profile-pic">
-            <img src="{{ asset('images/default_avatar.png') }}" alt="Default Avatar" class="is-rounded" style="width: 36px; height: 36px; object-fit: cover;">
-          </div>
+            <div class="Profile-pic">
+              <img src="{{ asset('images/default_avatar.png') }}" alt="Default Avatar" class="profile-image is-rounded">
+            </div>
           @endif
 
           <div class="dropdown is-hoverable">

@@ -39,7 +39,7 @@
               <span class="icon"><i class="fas fa-box"></i></span>
               <span>Add New Product</span>
             </button>
-                <button type="submit" name="action" value="delete" class="button is-danger">Delete Selected</button>
+            <button type="submit" name="action" value="delete" class="button is-danger">Delete Selected</button>
             </div>
         </div>
 

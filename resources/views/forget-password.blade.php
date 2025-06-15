@@ -11,15 +11,12 @@
 
     <body>
 
-      <!-- Include the navbar -->
       @include('partials.navbar')
       @include('partials.message-notifications')
 
-      <!-- Centered Login Form -->
       <div class="login-container">
         <div class="login-box">
           <h2 class="title has-text-centered has-text-primary">Reset Password</h2>
-          <!-- 🌟 Start of form -->
           <form action="{{ route('forgetPassword.post') }}" method="POST">
             @csrf
 
@@ -55,7 +52,6 @@
               </p>
             </div>
           </form>
-          <!-- 🌟 End of form -->
         </div>
       </div>
       

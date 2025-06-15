@@ -15,7 +15,6 @@ body {
     height: 90vh;  
 }
 
-/* Styling for the left column with text */
 .landing-section .column.is-one-third:first-child {
     display: flex;
     flex-direction: column;
@@ -34,7 +33,7 @@ body {
 .landing-section .subtitle {
     font-size: 1.2rem;
     color: #555;
-    max-width: 80%; /* Optional: limit the width for better readability */
+    max-width: 80%;
     margin-top: 30px;
 }
 
@@ -52,20 +51,3 @@ body {
     align-items: flex-start;
     margin-right: 50px;
   }
-
-/* Responsive design: Stacks the layout on smaller screens */
-@media (max-width: 768px) {
-    .landing-section .columns {
-        flex-direction: column;  /* Stacks the columns on small screens */
-        text-align: center;
-    }
-
-    .landing-section .title {
-        font-size: 2rem; 
-    }
-
-    .landing-section .subtitle {
-        font-size: 1rem;
-        max-width: 100%;
-    }
-}

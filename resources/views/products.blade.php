@@ -8,29 +8,28 @@
     <link rel="stylesheet" href="{{ asset('css/products.css') }}">
     <link rel="stylesheet" href="{{ asset('css/navbarText.css') }}">
   </head>
+  
   <body>
 
     @include('partials.navbar')
+    @include('partials.message-notifications')
 
     <section class="section">
       <div class="container">
 
-        <!-- 🔍 Search Bar -->
-        <div class="field has-addons search-bar">
-          <div class="control is-expanded">
-            <input class="input" type="text" placeholder="Search for PCs or laptops..." id="searchInput"/>
-          </div>
-          <div class="control">
-            <button class="button is-primary" id="searchBtn">
-              <span class="icon"><i class="fas fa-search"></i></span>
-            </button>
-          </div>
+      <form method="GET" action="{{ route('products') }}" class="field has-addons search-bar">
+        <div class="control is-expanded">
+          <input class="input" type="text" name="search" placeholder="Search for PCs or laptops..." value="{{ request('search') }}">
         </div>
+        <div class="control">
+          <button class="button is-primary" type="submit">
+            <span class="icon"><i class="fas fa-search"></i></span>
+          </button>
+        </div>
+      </form>
 
-        <!-- 🖼️ Card Grid -->
         <div class="columns is-multiline">
           @foreach ($products as $product)
-          <!-- 🧊 Listing Card -->
           <div class="column is-one-quarter">
             <div class="card">
               <div class="card-image">
@@ -62,7 +61,6 @@
           @endforeach
         </div>
 
-        <!-- 🔍 Preview Modal -->
         <div class="modal" id="previewModal">
           <div class="modal-background"></div>
           <div class="modal-card">
@@ -91,17 +89,14 @@
 
         <nav class="pagination is-centered" role="navigation" aria-label="pagination">
           <ul class="pagination-list">
-              {{ $products->links() }}
+            {{ $products->appends(request()->query())->links() }}
           </ul>
         </nav>
 
       </div>
     </section>
 
-    <!-- Include the preview script -->
     <script src="{{ asset('js/preview.js') }}"></script>
-
-    <!-- Include the escapePreview script (for closing modal) -->
     <script src="{{ asset('js/escapePreview.js') }}"></script>
 
     @include('partials.footer')

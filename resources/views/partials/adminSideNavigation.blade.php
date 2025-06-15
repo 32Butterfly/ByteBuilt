@@ -22,7 +22,7 @@
             </li>
             <li>
                 <a href="{{ route('adminManageCarts') }}">
-                    <span class="icon is-small"><i class="fa fa-shopping-cart"></i></span>
+                    <span class="icon is-small"><i class="fa fa-shopping-bag"></i></span>
                     <span>Carts</span>
                 </a>
             </li>

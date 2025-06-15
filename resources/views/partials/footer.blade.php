@@ -1,9 +1,6 @@
-<!-- resources/views/partials/footer.blade.php -->
 <footer class="footer">
   <div class="columns is-mobile is-vcentered">
-    <!-- Left Side: Important Information -->
     <div class="column mx-5">
-      <!-- Only this part will be centered -->
       <div class="has-text-centered">
         <p style = "margin-bottom: 20px"><strong>Important Information</strong></p>
       </div>
@@ -15,7 +12,6 @@
       <p>📧 Email: support@bytebuilt.com</p>
     </div>
 
-    <!-- Right Side: Connect with Us and Social Media Icons -->
     <div class="column has-text-centered mx-5">
       <p style="margin-bottom: 20px;"><strong>Connect with Us</strong></p>
       <p class="mb-2">

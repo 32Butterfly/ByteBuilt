@@ -10,11 +10,10 @@
   </head>
 
   <body>
+    
     @include('partials.navbar')
-
     @include('partials.message-notifications')
 
-    <!-- Profile Container -->
     <div class="login-container">
       <div class="login-box">
         <h2 class="title has-text-centered has-text-primary">Your Profile</h2>
@@ -47,8 +46,8 @@
 
         <script src="{{ asset('js/showImageName.js') }}"></script>
 
-        <div class="field has-text-centered mt-4">
-          <button type="submit" class="button is-link is-light">Upload</button>
+        <div class="field has-text-centered mt-4" style="margin-bottom: 25px;">
+          <button type="submit" class="button is-link is-light is-fullwidth">Upload</button>
         </div>
       </form>
 

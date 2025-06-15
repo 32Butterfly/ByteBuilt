@@ -11,16 +11,12 @@
 
   <body>
 
-    <!-- Include the navbar -->
     @include('partials.navbar')
-
     @include('partials.message-notifications')
 
-    <!-- Centered Login Form -->
     <div class="login-container">
       <div class="login-box">
         <h2 class="title has-text-centered has-text-primary">Login to ByteBuilt</h2>
-        <!-- 🌟 Start of form -->
         <form action="{{ route('login.post') }}" method="POST">
           @csrf
 
@@ -68,7 +64,6 @@
             </p>
           </div>
         </form>
-        <!-- 🌟 End of form -->
 
         <div class="field register-suggestion">
           <div class="has-text-centered">
