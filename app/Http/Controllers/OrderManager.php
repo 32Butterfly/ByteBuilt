@@ -137,13 +137,20 @@ class OrderManager extends Controller
             $quantities = json_decode($order->quantity, true);
 
             $products = Product::whereIn('id', $functionIds)->get();
+            
 
             $order->product_details = $products->map(function($product) use ($functionIds, $quantities) {
                 $index = array_search($product->id, $functionIds);
+
+                if (isset($quantities[$index])) {
+                    $quantity = $quantities[$index];
+                } else {
+                    $quantity = 0;
+                }
+
                 return [
                     'name' => $product->name,
-                    'price' => $product->price,
-                    'quantity' => $quantities[$index] ?? 0,
+                    'quantity' => $quantity,
                     'image' => $product->image,
                     'currency' => $product->currency,
                 ];
