@@ -1,61 +1,61 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# ByteBuilt
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+- ByteBuilt is a **marketplace for buying prebuilt PCs and laptops**, built with **Laravel** and **MySQL**.  
+- It provides a clean interface for browsing, comparing, and ordering PCs, along with an **admin panel** for managing products, users, orders and carts
 
-## About Laravel
+## Landing page:
+<img width="1518" height="783" alt="Landing" src="https://github.com/user-attachments/assets/529432fe-1129-46ed-b954-2aaaa19c49a1" />
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Tech Stack
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Languages:** PHP, HTML, CSS, JavaScript  
+- **Framework:** [Laravel](https://laravel.com/)
+- **Database:** MySQL
+- **Frontend:** [Bulma CSS](https://bulma.io/)
+- **Package Manager:** Composer & NPM
+- **Version Control:** Git & GitHub
+- **Environment:** [XAMPP](https://www.apachefriends.org/index.html) (local development server)
 
-## Learning Laravel
+### Validation & Error Handling
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- **Login:** checks email exists and password length (6–30 characters)  
+- **Registration:** validates name, email uniqueness, password length, and confirmation  
+- **Server-side validation:** using Laravel `$request->validate()` for all forms  
+- **Client-side validation:** basic checks with JavaScript  
+- **Error feedback:** redirects with clear success/error messages for all actions
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Profile Image Upload
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- Users can upload a profile picture through their account settings  
+- Server-side validation ensures only images (`jpeg`, `png`, `jpg`, `gif`) up to 2MB are accepted  
+- Uploaded images are stored in Laravel’s `public` storage folder with a **random 64-character filename** to prevent naming conflicts  
+- If a user already has a profile picture, the old image is automatically deleted when a new one is uploaded  
+- After a successful upload, the user is redirected to their profile page with a confirmation message
 
-## Laravel Sponsors
+### Forgot Password
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- Users can request a password reset via the **Forget Password** page  
+- Server-side validation ensures the submitted email exists in the database  
+- Generates a **secure 64-character token** stored in `password_reset_tokens` table  
+- Sends a password reset link to the user’s email with a custom template (`emails.reset-password`)  
+- Users can set a new password via the reset link; new password is validated and hashed before updating  
+- After successful reset, the token is deleted and the user is redirected to the login page with a success message  
+- Handles invalid tokens or email submissions with clear error messages  
 
-### Premium Partners
+## Features
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development/)**
-- **[Active Logic](https://activelogic.com)**
+### User Authentication
 
-## Contributing
+**Login**  
+Allows users to securely log in to their accounts.
+<img width="1524" height="772" alt="loginPage" src="https://github.com/user-attachments/assets/17062e4a-12e6-4c4b-a440-658e0af754ef" />
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+**Registration**<br>
+New users can create an account to access the marketplace.
+<img width="1521" height="772" alt="RegisterPage" src="https://github.com/user-attachments/assets/a39c6a6c-017b-48f8-914b-b2754d8f8c5b" />
 
-## Code of Conduct
+**Password Recovery**  
+Users can reset their password if forgotten.
+<img width="1524" height="783" alt="Resetpass" src="https://github.com/user-attachments/assets/8ad7fe4c-26b3-48aa-98b4-4702a6497352" />
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
